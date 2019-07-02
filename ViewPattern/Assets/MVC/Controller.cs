@@ -8,17 +8,23 @@ namespace ViewPatterns.MVC {
         const int maxNameLength = 10;
 
         [SerializeField] BMIView bmiView = default;
-        BMICalculateModel bmiCalcModel = default;
-        BMIEvaluateModel bmiEvalModel = default;
+        IModel<PersonEntity, float> bmiCalcModel = default;
+        IModel<float, BMIEvalType> bmiEvalModel = default;
         PersonEntity person = default;
+
+        public void Construct(IModel<PersonEntity, float> calc, IModel<float, BMIEvalType> eval) {
+            bmiCalcModel = calc;
+            bmiEvalModel = eval;
+        }
 
         void Awake() {
             person = new PersonEntity();
-            bmiCalcModel = new BMICalculateModel();
-            bmiEvalModel = new BMIEvaluateModel();
         }
 
         void Start() {
+            if (bmiCalcModel == default && bmiEvalModel == default) {
+                Construct(new BMICalculateModel(), new BMIEvaluateModel());
+            }
             // 初期データで計算
             CalcPersonBMI();
         }

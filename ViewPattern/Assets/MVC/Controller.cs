@@ -8,12 +8,14 @@ namespace ViewPatterns.MVC {
         const int maxNameLength = 10;
 
         [SerializeField] BMIView bmiView = default;
-        BMIModel bmiModel = default;
+        BMICalculateModel bmiCalcModel = default;
+        BMIEvaluateModel bmiEvalModel = default;
         PersonEntity person = default;
 
         void Awake() {
             person = new PersonEntity();
-            bmiModel = new BMIModel();
+            bmiCalcModel = new BMICalculateModel();
+            bmiEvalModel = new BMIEvaluateModel();
         }
 
         void Start() {
@@ -71,10 +73,17 @@ namespace ViewPatterns.MVC {
         }
 
         void CalcPersonBMI() {
-            if (bmiModel.TryApply(person, out float bmi)) {
-                bmiView.BMIText.text = bmi.ToString("F1");
+            // BMIを計算
+            if (bmiCalcModel.TryApply(person, out float bmi)) {
+                bmiView.BMIValueText.text = bmi.ToString("F1");
             } else {
-                bmiView.BMIText.text = "?";
+                bmiView.BMIValueText.text = "?";
+            }
+            // BMIを評価
+            if (bmiEvalModel.TryApply(bmi, out BMIEvalType bmiResult)) {
+                bmiView.BMIEvaluateText.text = $"{bmiResult.ToJpn()}です";
+            } else {
+                bmiView.BMIEvaluateText.text = "???";
             }
         }
     }

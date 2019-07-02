@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ViewPatterns {
-    public class BMIModel : IModel<PersonEntity, float> {
+    public class BMICalculateModel : IModel<PersonEntity, float> {
         public bool TryApply(PersonEntity data, out float result) {
             result = 0.0F;
             if (data == null) {

@@ -310,8 +310,9 @@ GameObject:
   - component: {fileID: 1512674964234533492}
   - component: {fileID: 1512674964234533494}
   - component: {fileID: 1512674964234533493}
+  - component: {fileID: 6255465542270751604}
   m_Layer: 5
-  m_Name: UI
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,6 +387,23 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6255465542270751604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512674964234533491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f019c1cc3b0054ac8a60230eaa79c436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameInputField: {fileID: 1512674965952642644}
+  ageInputField: {fileID: 1512674964929864061}
+  heightInputField: {fileID: 1512674965592604050}
+  weightInputField: {fileID: 1512674964228751070}
+  bimText: {fileID: 1512674965286018291}
 --- !u!1 &1512674964438544697
 GameObject:
   m_ObjectHideFlags: 0

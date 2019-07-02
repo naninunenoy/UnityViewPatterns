@@ -15,7 +15,7 @@ namespace ViewPatterns.MVP {
         }
 
         void Start() {
-            model.Initialize(this);
+            model.Initialize();
             view.Bind(presenter, model);
         }
     }

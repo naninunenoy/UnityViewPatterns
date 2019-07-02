@@ -22,19 +22,15 @@ namespace ViewPatterns.MVP {
         public IReactiveProperty<BMIEvalType> PersonBMIEval { get; }
 
         public BMIModel(PersonEntity person) {
-            PersonName = new ReactiveProperty<string>();
-            PersonAge = new ReactiveProperty<int>();
-            PersonHeight = new ReactiveProperty<float>();
-            PersonWeight = new ReactiveProperty<float>();
+            PersonName = new ReactiveProperty<string> { Value = person.Name };
+            PersonAge = new ReactiveProperty<int> { Value = person.Age };
+            PersonHeight = new ReactiveProperty<float> { Value = person.Height };
+            PersonWeight = new ReactiveProperty<float> { Value = person.Weight };
             PersonBMIValue = new ReactiveProperty<float>();
             PersonBMIEval = new ReactiveProperty<BMIEvalType>();
-            PersonName.Value = person.Name;
-            PersonAge.Value = person.Age;
-            PersonHeight.Value = person.Height;
-            PersonWeight.Value = person.Weight;
         }
 
-        public void Initialize(Component disposable) {
+        public void Initialize() {
             // 体重or身長の更新でBMI計算
             Observable
                 .CombineLatest(PersonHeight, PersonWeight)
@@ -44,12 +40,11 @@ namespace ViewPatterns.MVP {
                     if (!Mathf.Approximately(h, 0.0F)) {
                         PersonBMIValue.Value = w / (h * h);
                     }
-                }).AddTo(disposable);
+                });
             // BMIの更新で評価も更新
             PersonBMIValue.Subscribe(x => {
                 PersonBMIEval.Value = Evaluate(x);
-            })
-            .AddTo(disposable);
+            });
         }
 
         private BMIEvalType Evaluate(float bmi) {

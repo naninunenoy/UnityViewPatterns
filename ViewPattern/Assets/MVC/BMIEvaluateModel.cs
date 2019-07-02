@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ViewPatterns {
+namespace ViewPatterns.MVC {
     public class BMIEvaluateModel : IModel<float, BMIEvalType> {
         public bool TryApply(float data, out BMIEvalType result) {
             if (data <= 0.0F) {

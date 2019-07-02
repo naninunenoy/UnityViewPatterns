@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ViewPatterns {
+namespace ViewPatterns.MVC {
     public class BMICalculateModel : IModel<PersonEntity, float> {
         public bool TryApply(PersonEntity data, out float result) {
             result = 0.0F;

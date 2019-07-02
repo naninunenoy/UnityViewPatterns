@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 1512674964234533493}
   - component: {fileID: 6255465542270751604}
   m_Layer: 5
-  m_Name: View
+  m_Name: BMIView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1176,7 +1176,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20.0
+  m_Text: 0.0
 --- !u!1 &1512674965297916935
 GameObject:
   m_ObjectHideFlags: 0

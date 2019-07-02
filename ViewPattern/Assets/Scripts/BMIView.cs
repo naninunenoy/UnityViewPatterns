@@ -10,10 +10,10 @@ namespace ViewPatterns {
         [SerializeField] InputField heightInputField = default;
         [SerializeField] InputField weightInputField = default;
         [SerializeField] Text bimText = default;
-        InputField NameInputField { get { return nameInputField; } }
-        InputField AgeInputField { get { return ageInputField; } }
-        InputField HeightInputField { get { return heightInputField; } }
-        InputField WeightInputField { get { return weightInputField; } }
-        Text BMIText { get { return bimText; } }
+        public InputField NameInputField { get { return nameInputField; } }
+        public InputField AgeInputField { get { return ageInputField; } }
+        public InputField HeightInputField { get { return heightInputField; } }
+        public InputField WeightInputField { get { return weightInputField; } }
+        public Text BMIText { get { return bimText; } }
     }
 }

@@ -35,10 +35,12 @@ namespace ViewPatterns.MVC {
             }
             if (personName.Length >= maxNameLength) {
                 // 10文字以内に抑える
-                bmiView.NameInputField.text = string.Concat(personName.Take(maxNameLength));
-                return;
+                var trimName = string.Concat(personName.Take(maxNameLength));
+                bmiView.NameInputField.text = trimName;
+                person.Name = trimName;
+            } else {
+                person.Name = personName;
             }
-            person.Name = personName;
         }
 
         public void SetPersonAge(string personAgeStr) {

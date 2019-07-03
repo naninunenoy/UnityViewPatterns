@@ -4,9 +4,12 @@ using System.Linq;
 using UnityEngine;
 
 namespace ViewPatterns.CA {
-    public class BMIPresenter : IPresenter {
+    public class BMIPresenter : IPresenter<BMIView> {
         const int maxNameLength = 10;
 
+        public BMIPresenter(BMIView view) {
+
+        }
 
         //void IBMIViewUpdateDelegate.OnNameInputChange(string personName) {
         //    if (personName.Length > maxNameLength) {

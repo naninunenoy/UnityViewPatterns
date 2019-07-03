@@ -21,10 +21,10 @@ namespace ViewPatterns.CA {
         }
 
         public void Bind() {
-            view.NameInputField.OnValueChangedAsObservable().Subscribe(x => { personNameInput.Value = x; });
-            view.AgeInputField.OnValueChangedAsObservable().Subscribe(x => { personAgeInput.Value = x; });
-            view.HeightInputField.OnValueChangedAsObservable().Subscribe(x => { personHeightInput.Value = x; });
-            view.WeightInputField.OnValueChangedAsObservable().Subscribe(x => { personWeightInput.Value = x; });
+            view.NameInputField.OnEndEditAsObservable().Subscribe(x => { personNameInput.Value = x; });
+            view.AgeInputField.OnEndEditAsObservable().Subscribe(x => { personAgeInput.Value = x; });
+            view.HeightInputField.OnEndEditAsObservable().Subscribe(x => { personHeightInput.Value = x; });
+            view.WeightInputField.OnEndEditAsObservable().Subscribe(x => { personWeightInput.Value = x; });
         }
 
         public IReadOnlyReactiveProperty<string> PersonNameInput { get => personNameInput; }

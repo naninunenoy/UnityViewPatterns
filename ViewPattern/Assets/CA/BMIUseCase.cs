@@ -19,11 +19,6 @@ namespace ViewPatterns.CA {
 
         public void Initialize() {
             var person = repository.GetEntity();
-            // initialize view
-            presenter.SetPersonName(person.Name);
-            presenter.SetPersonAge(person.Age.ToString());
-            presenter.SetPersonHeight(person.Height.ToString("F1"));
-            presenter.SetPersonWeight(person.Weight.ToString("F1"));
             // observe view update
             presenter
                 .PersonNameInput
@@ -53,9 +48,10 @@ namespace ViewPatterns.CA {
                 .PersonHeightInput
                 .SkipLatestValueOnSubscribe()
                 .Subscribe(x => {
-                    if (float.TryParse(x, out float height)) {
+                    if (float.TryParse(x, out float height) && height > 0.0F) {
                         person.Height = height;
                         repository.SetEntity(person);
+                        CalcBMI(person);
                     } else {
                         presenter.SetPersonHeight(""); // 不正な入力は削除
                     }
@@ -64,11 +60,12 @@ namespace ViewPatterns.CA {
                 .PersonWeightInput
                 .SkipLatestValueOnSubscribe()
                 .Subscribe(x => {
-                    if (float.TryParse(x, out float weight)) {
+                    if (float.TryParse(x, out float weight) && weight > 0.0F) {
                         person.Weight = weight;
                         repository.SetEntity(person);
+                        CalcBMI(person);
                     } else {
-                        presenter.SetPersonHeight(""); // 不正な入力は削除
+                        presenter.SetPersonWeight(""); // 不正な入力は削除
                     }
                 });
             presenter.Bind();

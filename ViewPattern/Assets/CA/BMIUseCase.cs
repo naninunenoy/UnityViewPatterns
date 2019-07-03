@@ -25,40 +25,52 @@ namespace ViewPatterns.CA {
             presenter.SetPersonHeight(person.Height.ToString("F1"));
             presenter.SetPersonWeight(person.Weight.ToString("F1"));
             // observe view update
-            presenter.PersonNameInput.Subscribe(x => {
-                var name = x;
-                if (name.Length > personMaxNameLength) {
-                    // 名前は10文字までとする
-                    name = string.Concat(name.Take(personMaxNameLength));
-                    presenter.SetPersonName(name);
-                }
-                person.Name = name;
-                repository.SetEntity(person);
-            });
-            presenter.PersonAgeInput.Subscribe(x => {
-                if (int.TryParse(x, out int age) && age >= 0) {
-                    person.Age = age;
+            presenter
+                .PersonNameInput
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(x => {
+                    var name = x;
+                    if (name.Length > personMaxNameLength) {
+                        // 名前は10文字までとする
+                        name = string.Concat(name.Take(personMaxNameLength));
+                        presenter.SetPersonName(name);
+                    }
+                    person.Name = name;
                     repository.SetEntity(person);
-                } else {
-                    presenter.SetPersonAge(""); // 不正な入力は削除
-                }
-            });
-            presenter.PersonHeightInput.Subscribe(x => {
-                if (float.TryParse(x, out float height)) {
-                    person.Height = height;
-                    repository.SetEntity(person);
-                } else {
-                    presenter.SetPersonHeight(""); // 不正な入力は削除
-                }
-            });
-            presenter.PersonWeightInput.Subscribe(x => {
-                if (float.TryParse(x, out float weight)) {
-                    person.Weight = weight;
-                    repository.SetEntity(person);
-                } else {
-                    presenter.SetPersonHeight(""); // 不正な入力は削除
-                }
-            });
+                });
+            presenter
+                .PersonAgeInput
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(x => {
+                    if (int.TryParse(x, out int age) && age >= 0) {
+                        person.Age = age;
+                        repository.SetEntity(person);
+                    } else {
+                        presenter.SetPersonAge(""); // 不正な入力は削除
+                    }
+                });
+            presenter
+                .PersonHeightInput
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(x => {
+                    if (float.TryParse(x, out float height)) {
+                        person.Height = height;
+                        repository.SetEntity(person);
+                    } else {
+                        presenter.SetPersonHeight(""); // 不正な入力は削除
+                    }
+                });
+            presenter
+                .PersonWeightInput
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(x => {
+                    if (float.TryParse(x, out float weight)) {
+                        person.Weight = weight;
+                        repository.SetEntity(person);
+                    } else {
+                        presenter.SetPersonHeight(""); // 不正な入力は削除
+                    }
+                });
             presenter.Bind();
         }
 

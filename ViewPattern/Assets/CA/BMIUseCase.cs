@@ -3,20 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ViewPatterns.CA {
-    public class BMIUseCase : MonoBehaviour, IUseCase {
-        //[SerializeField] MvpBmiView view = default;
+    public class BMIUseCase : IUseCase<BMIPresenter, PersonRepository> {
 
-        BMIModel model = default;
-        BMIPresenter presenter = default;
+        public BMIUseCase(BMIPresenter presenter, PersonRepository repository) {
 
-        void Awake() {
-            model = new BMIModel(new PersonEntity());
-            presenter = new BMIPresenter(model);
-        }
-
-        void Start() {
-            model.Initialize();
-            //view.Bind(presenter, model);
         }
     }
 }

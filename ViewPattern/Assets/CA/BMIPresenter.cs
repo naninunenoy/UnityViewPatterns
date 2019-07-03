@@ -4,13 +4,9 @@ using System.Linq;
 using UnityEngine;
 
 namespace ViewPatterns.CA {
-    public class BMIPresenter : IPresenter/*, IBMIViewUpdateDelegate*/ {
+    public class BMIPresenter : IPresenter {
         const int maxNameLength = 10;
 
-        BMIModel Model { set; get; }
-        public BMIPresenter(BMIModel model) {
-            Model = model;
-        }
 
         //void IBMIViewUpdateDelegate.OnNameInputChange(string personName) {
         //    if (personName.Length > maxNameLength) {

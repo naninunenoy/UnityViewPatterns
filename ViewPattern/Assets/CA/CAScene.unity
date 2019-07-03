@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 118493861}
   - component: {fileID: 118493862}
   m_Layer: 0
-  m_Name: BMIUseCase
+  m_Name: BMISceneMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,10 +152,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 118493860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 174eaba7c370b48eb9062bcac33254c0, type: 3}
+  m_Script: {fileID: 11500000, guid: cbdde647f6c4c415dac7904043b76fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 0}
+  bmiView: {fileID: 2105074073}
 --- !u!1 &1287779049
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,3 +597,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2105074071}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2105074073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6255465542270751604, guid: d68740c525f7843a289ca9b265368aca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2105074071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f019c1cc3b0054ac8a60230eaa79c436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

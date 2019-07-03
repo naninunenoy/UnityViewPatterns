@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ViewPatterns.MVP {
+namespace ViewPatterns.CA {
     public interface IModel { }
 }

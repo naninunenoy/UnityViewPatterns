@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace ViewPatterns.MVP {
+namespace ViewPatterns.CA {
     public class BMIPresenter : IPresenter, IBMIViewUpdateDelegate {
         const int maxNameLength = 10;
 

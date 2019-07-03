@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ViewPatterns.MVP {
+namespace ViewPatterns.CA {
     public class UseCase : MonoBehaviour {
         [SerializeField] MvpBmiView view = default;
 

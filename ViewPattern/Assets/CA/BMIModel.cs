@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-namespace ViewPatterns.MVP {
+namespace ViewPatterns.CA {
     public interface IReadOnlyBMIModel : IModel {
         IReadOnlyReactiveProperty<string> PersonName { get; }
         IReadOnlyReactiveProperty<int> PersonAge { get; }

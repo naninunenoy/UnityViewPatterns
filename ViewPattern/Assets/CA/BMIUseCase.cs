@@ -50,8 +50,8 @@ namespace ViewPatterns.CA {
                 .Subscribe(x => {
                     if (float.TryParse(x, out float height) && height > 0.0F) {
                         person.Height = height;
-                        repository.SetEntity(person);
                         CalcBMI(person);
+                        repository.SetEntity(person);
                     } else {
                         presenter.SetPersonHeight(""); // 不正な入力は削除
                     }
@@ -62,8 +62,8 @@ namespace ViewPatterns.CA {
                 .Subscribe(x => {
                     if (float.TryParse(x, out float weight) && weight > 0.0F) {
                         person.Weight = weight;
-                        repository.SetEntity(person);
                         CalcBMI(person);
+                        repository.SetEntity(person);
                     } else {
                         presenter.SetPersonWeight(""); // 不正な入力は削除
                     }
@@ -74,8 +74,10 @@ namespace ViewPatterns.CA {
         void CalcBMI(PersonEntity person) {
             var bmi = model.CalcBMI(person.Height, person.Weight);
             if (Mathf.Approximately(bmi, BMIModel.invalidBMI)) {
+                person.BMI = 0.0F;
                 return;
             }
+            person.BMI = bmi;
             var eval = model.EvaluateBMI(bmi);
             // apply
             presenter.SetPersonBMI(bmi.ToString("F1"));

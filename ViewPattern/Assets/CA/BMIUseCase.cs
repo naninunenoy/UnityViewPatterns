@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ViewPatterns.CA {
     public class BMIUseCase : MonoBehaviour, IUseCase {
-        [SerializeField] MvpBmiView view = default;
+        //[SerializeField] MvpBmiView view = default;
 
         BMIModel model = default;
         BMIPresenter presenter = default;
@@ -16,7 +16,7 @@ namespace ViewPatterns.CA {
 
         void Start() {
             model.Initialize();
-            view.Bind(presenter, model);
+            //view.Bind(presenter, model);
         }
     }
 }

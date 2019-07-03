@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace ViewPatterns {
-    public class BMIView : MonoBehaviour {
+    public class BMIView : MonoBehaviour, IView {
         [SerializeField] InputField nameInputField = default;
         [SerializeField] InputField ageInputField = default;
         [SerializeField] InputField heightInputField = default;

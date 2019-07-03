@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ViewPatterns.CA {
-    public class UseCase : MonoBehaviour {
+    public class BMIUseCase : MonoBehaviour, IUseCase {
         [SerializeField] MvpBmiView view = default;
 
         BMIModel model = default;

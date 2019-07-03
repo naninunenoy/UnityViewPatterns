@@ -4,11 +4,9 @@ using UnityEngine;
 
 namespace ViewPatterns.CA {
     public class BMIModel : IModel {
-        public const float invalidBMI = float.MaxValue;
-
         public float CalcBMI(float height, float weight) {
             var h = height / 100.0F; // cm -> m
-            return Mathf.Approximately(h, 0.0F) ? invalidBMI : weight / (h * h);
+            return Mathf.Approximately(h, 0.0F) ? float.NaN : weight / (h * h);
         }
 
         public BMIEvalType EvaluateBMI(float bmi) {

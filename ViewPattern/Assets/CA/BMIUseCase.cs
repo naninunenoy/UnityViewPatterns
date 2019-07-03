@@ -50,10 +50,14 @@ namespace ViewPatterns.CA {
                 .Subscribe(x => {
                     if (float.TryParse(x, out float height) && height > 0.0F) {
                         person.Height = height;
-                        CalcBMI(person);
+                        person.BMI = model.CalcBMI(person.Height, person.Weight);
+                        presenter.SetPersonBMI(person.BMI.ToString("F1"));
+                        presenter.SetPersonBMIEvaluation(model.EvaluateBMI(person.BMI).ToJpn());
                         repository.SetEntity(person);
                     } else {
                         presenter.SetPersonHeight(""); // 不正な入力は削除
+                        presenter.SetPersonBMI("0.0");
+                        presenter.SetPersonBMIEvaluation(BMIEvalType.Unknown.ToJpn());
                     }
                 });
             presenter
@@ -62,26 +66,17 @@ namespace ViewPatterns.CA {
                 .Subscribe(x => {
                     if (float.TryParse(x, out float weight) && weight > 0.0F) {
                         person.Weight = weight;
-                        CalcBMI(person);
+                        person.BMI = model.CalcBMI(person.Height, person.Weight);
+                        presenter.SetPersonBMI(person.BMI.ToString("F1"));
+                        presenter.SetPersonBMIEvaluation(model.EvaluateBMI(person.BMI).ToJpn());
                         repository.SetEntity(person);
                     } else {
                         presenter.SetPersonWeight(""); // 不正な入力は削除
+                        presenter.SetPersonBMI("0.0");
+                        presenter.SetPersonBMIEvaluation(BMIEvalType.Unknown.ToJpn());
                     }
                 });
             presenter.Bind();
-        }
-
-        void CalcBMI(PersonEntity person) {
-            var bmi = model.CalcBMI(person.Height, person.Weight);
-            if (Mathf.Approximately(bmi, BMIModel.invalidBMI)) {
-                person.BMI = 0.0F;
-                return;
-            }
-            person.BMI = bmi;
-            var eval = model.EvaluateBMI(bmi);
-            // apply
-            presenter.SetPersonBMI(bmi.ToString("F1"));
-            presenter.SetPersonBMIEvaluation(eval.ToJpn());
         }
     }
 }

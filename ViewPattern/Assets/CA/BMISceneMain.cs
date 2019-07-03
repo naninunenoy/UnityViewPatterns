@@ -17,5 +17,9 @@ namespace ViewPatterns.CA {
             bmiPresenter = presenter;
             personRepository = repository;
         }
+
+        void Start() {
+            bmiUseCase.Initialize();
+        }
     }
 }

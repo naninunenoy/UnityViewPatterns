@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace ViewPatterns.CA.BMI {
-    public interface IBMIVewPresenter : IPresenter<BMIView> {
+    public interface IBMIVewPresenter : IPresenter {
         // view property changed
         IReadOnlyReactiveProperty<string> PersonNameInput { get; }
         IReadOnlyReactiveProperty<string> PersonAgeInput { get; }

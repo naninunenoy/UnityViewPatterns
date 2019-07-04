@@ -6,8 +6,8 @@ namespace ViewPatterns.CA.BMI {
     public class BMISceneMain : MonoBehaviour, ISceneMain {
         [SerializeField] BMIView bmiView = default;
 
-        IPresenter<BMIView> bmiPresenter = default;
-        IRepository<PersonEntity> personRepository = default;
+        IPresenter bmiPresenter = default;
+        IRepository personRepository = default;
         IUseCase bmiUseCase = default;
 
         void Awake() {

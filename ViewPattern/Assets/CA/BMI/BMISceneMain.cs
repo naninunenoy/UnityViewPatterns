@@ -8,7 +8,7 @@ namespace ViewPatterns.CA.BMI {
 
         IPresenter<BMIView> bmiPresenter = default;
         IRepository<PersonEntity> personRepository = default;
-        IUseCase<IPresenter<BMIView>, IRepository<PersonEntity>> bmiUseCase = default;
+        IUseCase bmiUseCase = default;
 
         void Awake() {
             var presenter = new BMIPresenter(bmiView);
@@ -19,7 +19,7 @@ namespace ViewPatterns.CA.BMI {
         }
 
         void Start() {
-            bmiUseCase.Initialize();
+            bmiUseCase.Begin();
         }
     }
 }

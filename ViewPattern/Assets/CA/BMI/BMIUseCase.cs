@@ -5,7 +5,7 @@ using UnityEngine;
 using UniRx;
 
 namespace ViewPatterns.CA.BMI {
-    public class BMIUseCase : IUseCase<IPresenter<BMIView>, IRepository<PersonEntity>> {
+    public class BMIUseCase : IUseCase {
         private const int personMaxNameLength = 10;
         private readonly IBMIVewPresenter presenter;
         private readonly IPersonRepository repository;
@@ -17,7 +17,7 @@ namespace ViewPatterns.CA.BMI {
             model = new BMIModel();
         }
 
-        public void Initialize() {
+        public void Begin() {
             var person = repository.GetPerson();
             // observe view update
             presenter

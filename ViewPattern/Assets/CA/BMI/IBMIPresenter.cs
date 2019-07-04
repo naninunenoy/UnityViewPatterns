@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-namespace ViewPatterns.CA {
+namespace ViewPatterns.CA.BMI {
     public interface IBMIVewPresenter : IPresenter<BMIView> {
         // view property changed
         IReadOnlyReactiveProperty<string> PersonNameInput { get; }

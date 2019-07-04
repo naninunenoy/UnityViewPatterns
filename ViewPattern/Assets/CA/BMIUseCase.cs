@@ -7,11 +7,11 @@ using UniRx;
 namespace ViewPatterns.CA {
     public class BMIUseCase : IUseCase<IPresenter<BMIView>, IRepository<PersonEntity>> {
         private const int personMaxNameLength = 10;
-        private readonly BMIPresenter presenter;
-        private readonly PersonRepository repository;
+        private readonly IBMIVewPresenter presenter;
+        private readonly IPersonRepository repository;
         private readonly BMIModel model;
 
-        public BMIUseCase(BMIPresenter presenter, PersonRepository repository) {
+        public BMIUseCase(IBMIVewPresenter presenter, IPersonRepository repository) {
             this.presenter = presenter;
             this.repository = repository;
             model = new BMIModel();

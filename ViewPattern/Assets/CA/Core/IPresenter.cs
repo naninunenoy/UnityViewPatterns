@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ViewPatterns.CA {
+namespace ViewPatterns.CA.Core {
     public interface IPresenter {
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UniRx;
 
-namespace ViewPatterns.CA.BMI {
+namespace ViewPatterns.CA {
     public class BMIPresenter : IBMIVewPresenter {
         private readonly BMIView view;
         private readonly ReactiveProperty<string> personNameInput;

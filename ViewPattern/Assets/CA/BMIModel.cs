@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ViewPatterns.CA.BMI {
-    public class BMIModel : IModel {
+namespace ViewPatterns.CA {
+    public class BMIModel : Core.IModel {
         public float CalcBMI(float height, float weight) {
             var h = height / 100.0F; // cm -> m
             return Mathf.Approximately(h, 0.0F) ? float.NaN : weight / (h * h);

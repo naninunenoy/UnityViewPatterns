@@ -4,8 +4,8 @@ using System.Linq;
 using UnityEngine;
 using UniRx;
 
-namespace ViewPatterns.CA.BMI {
-    public class BMIUseCase : IUseCase {
+namespace ViewPatterns.CA {
+    public class BMIUseCase : Core.IUseCase {
         private const int personMaxNameLength = 10;
         private readonly IBMIVewPresenter presenter;
         private readonly IPersonRepository repository;

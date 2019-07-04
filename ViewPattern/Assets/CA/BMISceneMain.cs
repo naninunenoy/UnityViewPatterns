@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ViewPatterns.CA.Core;
 
-namespace ViewPatterns.CA.BMI {
+namespace ViewPatterns.CA {
     public class BMISceneMain : MonoBehaviour, ISceneMain {
         [SerializeField] BMIView bmiView = default;
 

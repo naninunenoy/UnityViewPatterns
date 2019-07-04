@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-namespace ViewPatterns.CA.BMI {
-    public interface IBMIVewPresenter : IPresenter {
+namespace ViewPatterns.CA {
+    public interface IBMIVewPresenter : Core.IPresenter {
         // view property changed
         IReadOnlyReactiveProperty<string> PersonNameInput { get; }
         IReadOnlyReactiveProperty<string> PersonAgeInput { get; }

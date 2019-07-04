@@ -6,7 +6,5 @@ namespace ViewPatterns.CA {
     public interface IRepository {
     }
     public interface IRepository<TEntity> : IRepository where TEntity : IEntity {
-        TEntity GetEntity();
-        void SetEntity(TEntity entity);
     }
 }

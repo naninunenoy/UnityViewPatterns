@@ -18,7 +18,7 @@ namespace ViewPatterns.CA {
         }
 
         public void Initialize() {
-            var person = repository.GetEntity();
+            var person = repository.GetPerson();
             // observe view update
             presenter
                 .PersonNameInput
@@ -31,7 +31,7 @@ namespace ViewPatterns.CA {
                         presenter.SetPersonName(name);
                     }
                     person.Name = name;
-                    repository.SetEntity(person);
+                    repository.SetPerson(person);
                 });
             presenter
                 .PersonAgeInput
@@ -39,7 +39,7 @@ namespace ViewPatterns.CA {
                 .Subscribe(x => {
                     if (int.TryParse(x, out int age) && age >= 0) {
                         person.Age = age;
-                        repository.SetEntity(person);
+                        repository.SetPerson(person);
                     } else {
                         presenter.SetPersonAge(""); // 不正な入力は削除
                     }
@@ -53,7 +53,7 @@ namespace ViewPatterns.CA {
                         person.BMI = model.CalcBMI(person.Height, person.Weight);
                         presenter.SetPersonBMI(person.BMI.ToString("F1"));
                         presenter.SetPersonBMIEvaluation(model.EvaluateBMI(person.BMI).ToJpn());
-                        repository.SetEntity(person);
+                        repository.SetPerson(person);
                     } else {
                         presenter.SetPersonHeight(""); // 不正な入力は削除
                         presenter.SetPersonBMI("0.0");
@@ -69,7 +69,7 @@ namespace ViewPatterns.CA {
                         person.BMI = model.CalcBMI(person.Height, person.Weight);
                         presenter.SetPersonBMI(person.BMI.ToString("F1"));
                         presenter.SetPersonBMIEvaluation(model.EvaluateBMI(person.BMI).ToJpn());
-                        repository.SetEntity(person);
+                        repository.SetPerson(person);
                     } else {
                         presenter.SetPersonWeight(""); // 不正な入力は削除
                         presenter.SetPersonBMI("0.0");

@@ -23,7 +23,7 @@ namespace ViewPatterns.CA {
             } else if (25.0 <= bmi && bmi < 30.0F) {
                 return BMIEvalType.Overweight;
             } else  /* if (bmi <= 30.0F) */ {
-                return BMIEvalType.Moderately;
+                return BMIEvalType.Obese;
             }
         }
     }

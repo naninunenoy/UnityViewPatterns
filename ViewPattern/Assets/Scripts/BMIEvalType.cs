@@ -10,7 +10,7 @@ namespace ViewPatterns {
         Underweight,
         Normal,
         Overweight,
-        Moderately
+        Obese
     }
 
     public static class BMIEvalTypeEx {
@@ -26,7 +26,7 @@ namespace ViewPatterns {
                 return "標準";
             case BMIEvalType.Overweight:
                 return "肥満気味";
-            case BMIEvalType.Moderately:
+            case BMIEvalType.Obese:
                 return "肥満";
             case BMIEvalType.Unknown:
             default:

@@ -18,7 +18,7 @@ namespace ViewPatterns.MVC {
             } else if (25.0 <= data && data < 30.0F) {
                 result = BMIEvalType.Overweight;
             } else  /* if (data <= 30.0F) */ {
-                result = BMIEvalType.Moderately;
+                result = BMIEvalType.Obese;
             }
             return true;
         }

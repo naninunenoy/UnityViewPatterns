@@ -4,5 +4,6 @@ using UnityEngine;
 
 namespace BMIApp.CleanArchitecture {
     public interface IUseCase {
+        void Begin();
     }
 }

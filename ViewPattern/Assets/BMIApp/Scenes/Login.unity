@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginView: {fileID: 2825021293462704607}
   loginAlertView: {fileID: 361239580}
+  userRepository: {fileID: 11400000, guid: 5994297e2c7d58c43b7b173f20615b84, type: 2}
 --- !u!224 &736528486 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2825021294073141688, guid: 638ad048410352a4798b1db550a40b24,
@@ -858,6 +859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoginView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825021294073141691, guid: 638ad048410352a4798b1db550a40b24,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2825021294073141688, guid: 638ad048410352a4798b1db550a40b24,
         type: 3}

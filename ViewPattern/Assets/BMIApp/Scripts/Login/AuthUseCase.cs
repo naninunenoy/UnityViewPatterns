@@ -26,10 +26,10 @@ namespace BMIApp.Login {
             presenter.Begin();
             // 未入力時はボタンを押せなくする
             Observable
-                .ZipLatest(presenter.IdInput, presenter.PasswordInput)
+                .CombineLatest(presenter.IdInput, presenter.PasswordInput)
                 .Subscribe(x => {
                     bool contatinsEmpty = x.Any(y => string.IsNullOrEmpty(y));
-                    presenter.SetLoginButtonInteractive(contatinsEmpty);
+                    presenter.SetLoginButtonInteractive(!contatinsEmpty);
                 })
                 .AddTo(disposableComponent);
             // ログイン試行
@@ -49,7 +49,7 @@ namespace BMIApp.Login {
 
         async Task<bool> TryLoginAsync(string id, string pw) {
             var token = await auth.TryGetTokenAsync(id, pw);
-            if (!string.IsNullOrEmpty(token)) {
+            if (string.IsNullOrEmpty(token)) {
                 return false;
             }
             // 認証の結果を保持

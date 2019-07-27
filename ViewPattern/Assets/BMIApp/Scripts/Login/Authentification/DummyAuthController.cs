@@ -22,7 +22,7 @@ namespace BMIApp.Login {
         }
 
         public async Task<string> TryGetTokenAsync(string id, string password) {
-            if (!authUsers.TryGetValue("id", out User user) || user.password != password)  {
+            if (!authUsers.TryGetValue(id, out User user) || user.password != password)  {
                 return string.Empty;
             }
             return await Task.FromResult(user.token);

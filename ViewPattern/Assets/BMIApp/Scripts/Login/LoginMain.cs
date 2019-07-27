@@ -5,6 +5,7 @@ using UnityEngine;
 namespace BMIApp.Login {
     public class LoginMain : MonoBehaviour, CleanArchitecture.ISceneMain {
         [SerializeField] LoginView loginView;
+        [SerializeField] AlertView loginAlertView;
 
         void Awake() {
 

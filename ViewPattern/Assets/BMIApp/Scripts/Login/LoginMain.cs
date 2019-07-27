@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace BMIApp.Login {
     public class LoginMain : MonoBehaviour, CleanArchitecture.ISceneMain {
-        // Start is called before the first frame update
-        void Start() {
+        [SerializeField] LoginView loginView;
+
+        void Awake() {
 
         }
 
-        // Update is called once per frame
-        void Update() {
+        // Start is called before the first frame update
+        void Start() {
 
         }
     }

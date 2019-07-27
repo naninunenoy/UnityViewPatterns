@@ -10,5 +10,6 @@ namespace BMIApp.Login {
         IReadOnlyReactiveProperty<string> PasswordInput { get; }
         IObservable<Unit> LoginButtonClickObservable { get; }
         void SetLoginButtonInteractive(bool interactive);
+        void Begin();
     }
 }

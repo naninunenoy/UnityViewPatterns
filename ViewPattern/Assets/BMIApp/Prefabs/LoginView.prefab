@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 2825021294073141688}
   - component: {fileID: 2825021294073141686}
   - component: {fileID: 2825021294073141689}
+  - component: {fileID: 426053600844917644}
   m_Layer: 5
   m_Name: LoginView
   m_TagString: Untagged
@@ -415,6 +416,21 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &426053600844917644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825021294073141691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f206297a9f44d9489cd2bacc89f1adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idInputField: {fileID: 2825021294038466412}
+  pwInputField: {fileID: 2825021294585642347}
+  loginButton: {fileID: 2825021294751180013}
 --- !u!1 &2825021294093820977
 GameObject:
   m_ObjectHideFlags: 0

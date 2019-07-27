@@ -6,14 +6,26 @@ using UnityEngine;
 
 namespace BMIApp.Login {
     public class LoginPresenter : ILoginPresenter {
-        IReadOnlyReactiveProperty<string> ILoginPresenter.IdInput => throw new NotImplementedException();
+        readonly ILoginView view;
 
-        IReadOnlyReactiveProperty<string> ILoginPresenter.PasswordInput => throw new NotImplementedException();
+        public LoginPresenter(ILoginView view) { this.view = view; }
 
-        IObservable<Unit> ILoginPresenter.LoginButtonClickObservable => throw new NotImplementedException();
+        public IReadOnlyReactiveProperty<string> IdInput { private set; get; }
 
-        void ILoginPresenter.SetLoginButtonInteractive(bool interactive) {
-            throw new NotImplementedException();
+        public IReadOnlyReactiveProperty<string> PasswordInput { private set; get; }
+
+        public IObservable<Unit> LoginButtonClickObservable { private set; get; }
+
+        public void SetLoginButtonInteractive(bool interactive) {
+            if (view?.LoginButton != null) {
+                view.LoginButton.interactable = interactive;
+            }
+        }
+
+        public void Begin() {
+            IdInput = view?.IdInputField.OnEndEditAsObservable().ToReadOnlyReactiveProperty();
+            PasswordInput = view?.PasswordInputField.OnEndEditAsObservable().ToReadOnlyReactiveProperty();
+            LoginButtonClickObservable = view?.LoginButton.OnClickAsObservable();
         }
     }
 }

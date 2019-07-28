@@ -8,5 +8,6 @@ namespace BMIApp.BMI {
         Text DateText { get; }
         Text NameText { get; }
         Text BMIText { get; }
+        IHistoryElmView Clone(Transform parent);
     }
 }

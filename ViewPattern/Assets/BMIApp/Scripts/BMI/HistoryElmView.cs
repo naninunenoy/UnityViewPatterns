@@ -12,5 +12,9 @@ namespace BMIApp.BMI {
         public Text DateText => dateText;
         public Text NameText => nameText;
         public Text BMIText => bmiText;
+
+        public IHistoryElmView Clone(Transform parent) {
+            return Instantiate(gameObject, parent).GetComponent<IHistoryElmView>();
+        }
     }
 }

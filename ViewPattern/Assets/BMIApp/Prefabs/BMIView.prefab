@@ -1192,6 +1192,7 @@ GameObject:
   - component: {fileID: 488622657274318723}
   - component: {fileID: 488622657274318721}
   - component: {fileID: 488622657274318720}
+  - component: {fileID: 4922487194998615866}
   m_Layer: 5
   m_Name: BMIView
   m_TagString: Untagged
@@ -1267,6 +1268,26 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &4922487194998615866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488622657274318722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4fbd3115e547343b357817a00c98bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameInput: {fileID: 488622656694827518}
+  heightInput: {fileID: 488622656442862429}
+  weightInput: {fileID: 488622657587340370}
+  ageInput: {fileID: 488622657700977709}
+  genderMaleToggle: {fileID: 488622657609918111}
+  genderFemaleToggle: {fileID: 488622657972522081}
+  bmiText: {fileID: 488622657352322541}
+  saveButton: {fileID: 488622657104264164}
 --- !u!1 &488622657352322543
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ namespace BMIApp.Login {
             var authPresenter = new LoginPresenter(loginView);
             var alertPresenter = new AlertPresenter(loginAlertView);
             var auth = new DummyAuthController();
-            // create create
+            // create usecase
             var scene = new SceneTransitionUseCase();
             var alert = new AlertUseCase(alertPresenter, this);
             authUseCase = new AuthUseCase(authPresenter, auth, userRepository,

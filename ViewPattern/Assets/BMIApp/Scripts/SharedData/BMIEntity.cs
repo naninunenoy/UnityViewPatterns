@@ -34,4 +34,11 @@ namespace BMIApp {
         public float BMI { set { bmi = value; } get => bmi; }
         public DateTime CreatedAt { set { createdAt = value.ToString(dateTimeFormat); } get => DateTime.Parse(createdAt); }
     }
+
+    [Serializable]
+    public class BMIEntityArray {
+        [SerializeField] BMIEntity[] items;
+        public BMIEntityArray(BMIEntity[] items) { this.items = items; }
+        public IReadOnlyList<BMIEntity> Items { get => items; }
+    }
 }

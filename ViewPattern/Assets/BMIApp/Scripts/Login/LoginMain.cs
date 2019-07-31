@@ -7,7 +7,7 @@ namespace BMIApp.Login {
     public class LoginMain : MonoBehaviour, ISceneMain {
         [SerializeField] LoginView loginView = default;
         [SerializeField] AlertView loginAlertView = default;
-        [SerializeField] UserAccountRepository userRepository = default;
+        [SerializeField] SharedScriotableObject sharedData = default;
 
         IUseCase authUseCase;
         IUseCase alertUseCase;
@@ -20,7 +20,8 @@ namespace BMIApp.Login {
             // create usecase
             var scene = new SceneTransitionUseCase();
             var alert = new AlertUseCase(alertPresenter, this);
-            authUseCase = new AuthUseCase(authPresenter, auth, userRepository,
+            authUseCase = new AuthUseCase(authPresenter, auth, 
+                new UserAccountRepository(sharedData),
                 new IAuthResultDelegate[] { scene, alert }, this);
             alertUseCase = alert;
             sceneUseCase = scene;

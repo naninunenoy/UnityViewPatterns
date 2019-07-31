@@ -4,18 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BMIApp {
-    [Serializable]
-    [CreateAssetMenu(menuName = "ScriptableObject/UserAccountRepository", fileName = "UserAccountRepository")]
-    public class UserAccountRepository : ScriptableObject, IUserAccountRepository {
-        [SerializeField] string currentUserId;
-        [SerializeField] string currentUserToken;
+    public class UserAccountRepository : IUserAccountRepository {
+        readonly ISharedData data;
 
-        public string CurrentUserId { set { currentUserId = value; } get => currentUserId; }
-        public string CurrentUserToken { set { currentUserToken = value; } get => currentUserToken; }
+        public UserAccountRepository(ISharedData data) { this.data = data; }
+
+        public string CurrentUserId { set { data.CurrentUserId = value; } get => data.CurrentUserId;  }
+        public string CurrentUserToken { set { data.CurrentUserToken = value; } get => data.CurrentUserToken; }
 
         public void Clear() {
-            currentUserId = string.Empty;
-            currentUserToken = string.Empty;
+            data.CurrentUserId = string.Empty;
+            data.CurrentUserToken = string.Empty;
         }
     }
 }

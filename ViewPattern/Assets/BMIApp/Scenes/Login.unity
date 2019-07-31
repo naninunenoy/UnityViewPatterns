@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginView: {fileID: 2825021293462704607}
   loginAlertView: {fileID: 361239580}
-  userRepository: {fileID: 11400000, guid: 5994297e2c7d58c43b7b173f20615b84, type: 2}
+  sharedData: {fileID: 11400000, guid: f244c23dbe9ce8146ae2fb6aa52c77cd, type: 2}
 --- !u!224 &736528486 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2825021294073141688, guid: 638ad048410352a4798b1db550a40b24,

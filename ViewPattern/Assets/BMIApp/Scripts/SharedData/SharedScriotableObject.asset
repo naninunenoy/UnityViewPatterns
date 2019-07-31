@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d0e8a9efd1cf449bbc9a53aa217380, type: 3}
-  m_Name: UserAccountRepository
+  m_Script: {fileID: 11500000, guid: be3e9e1e924bb14469f110eeb25b96ba, type: 3}
+  m_Name: SharedScriotableObject
   m_EditorClassIdentifier: 
   currentUserId: 
   currentUserToken: 

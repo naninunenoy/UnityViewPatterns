@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace BMIApp {
     [Serializable]
-    [CreateAssetMenu(menuName = "ScriptableObject/SharedScriotableObject", fileName = "SharedScriotableObject")]
-    public class SharedScriotableObject : ScriptableObject, ISharedData {
+    [CreateAssetMenu(menuName = "ScriptableObject/SharedScriptableObject", fileName = "SharedScriptableObject")]
+    public class SharedScriptableObject : ScriptableObject, ISharedData {
         [SerializeField] string currentUserId;
         [SerializeField] string currentUserToken;
         public string CurrentUserId { get => currentUserId; set { currentUserId = value; } }

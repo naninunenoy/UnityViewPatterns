@@ -7,7 +7,7 @@ namespace BMIApp.Login {
     public class LoginMain : MonoBehaviour, ISceneMain {
         [SerializeField] LoginView loginView = default;
         [SerializeField] AlertView loginAlertView = default;
-        [SerializeField] SharedScriotableObject sharedData = default;
+        [SerializeField] SharedScriptableObject sharedData = default;
 
         IUseCase authUseCase;
         IUseCase alertUseCase;

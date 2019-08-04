@@ -20,7 +20,7 @@ namespace BMIApp {
                 return Task.CompletedTask;
             }
             var arr = JsonUtility.FromJson<BMIEntityArray>(json);
-            if (arr == null || arr.Items == null || arr.Items.Count == 0) {
+            if (arr?.Items == null || arr.Items.Count == 0) {
                 datas = new List<BMIEntity>();
                 return Task.CompletedTask;
             }

@@ -30,5 +30,9 @@ namespace BMIApp.BMI {
         public void SetBMIResult(string result) {
             view.BMIText.text = result;
         }
+
+        public void SetSaveButtonEnable(bool enable) {
+            view.SaveButton.interactable = enable;
+        }
     }
 }

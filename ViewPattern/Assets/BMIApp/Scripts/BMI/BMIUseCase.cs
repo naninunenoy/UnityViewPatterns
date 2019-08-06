@@ -5,13 +5,13 @@ using UnityEngine;
 using UniRx;
 
 namespace BMIApp.BMI {
-    public class BMIUseCase : CleanArchitecture.IUseCase {
+    public class BMIUseCase<TEntity> : CleanArchitecture.IUseCase where TEntity : IBMIEntity, new() {
         readonly IBMIPresenter bmiPresenter;
-        readonly IBMIHistoryRepository<IBMIEntity> bmiRepository;
+        readonly IBMIHistoryRepository<TEntity> bmiRepository;
         readonly Component disposableComponent;
 
         public BMIUseCase(IBMIPresenter bmiPresenter,
-                          IBMIHistoryRepository<IBMIEntity> bmiRepository,
+                          IBMIHistoryRepository<TEntity> bmiRepository,
                           Component disposableComponent) {
             this.bmiPresenter = bmiPresenter;
             this.bmiRepository = bmiRepository;
@@ -19,7 +19,7 @@ namespace BMIApp.BMI {
         }
 
         public void Begin() {
-            var entity = new BMIEntity();
+            var entity = new TEntity();
             bmiPresenter.Begin();
             bmiPresenter
                 .NameInput
@@ -72,14 +72,16 @@ namespace BMIApp.BMI {
                     await bmiRepository.SaveAsync(entity);
                 })
                 .AddTo(disposableComponent);
+            bmiPresenter.SetSaveButtonEnable(false);
         }
 
-        float UpdateBMI(BMIEntity entity) {
+        float UpdateBMI(IBMIEntity entity) {
             if (!TryCalcBMI(entity.Height, entity.Weight, out float bmi)) {
                 return 0.0F;
             }
             var msg = GetBMIEvaluation(bmi);
             bmiPresenter.SetBMIResult($"{bmi:F1}({msg})");
+            bmiPresenter.SetSaveButtonEnable(true);
             return bmi;
         }
 

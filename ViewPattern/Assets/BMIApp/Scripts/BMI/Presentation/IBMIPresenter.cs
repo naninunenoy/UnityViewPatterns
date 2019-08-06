@@ -15,5 +15,6 @@ namespace BMIApp.BMI {
         IReadOnlyReactiveProperty<bool> GenderFemaleSelect { get; }
         IObservable<Unit> SaveButtonClickObservable { get; }
         void SetBMIResult(string result);
+        void SetSaveButtonEnable(bool enable);
     }
 }

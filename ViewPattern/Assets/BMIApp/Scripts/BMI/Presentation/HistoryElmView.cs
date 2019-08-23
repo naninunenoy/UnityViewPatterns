@@ -14,7 +14,10 @@ namespace BMIApp.BMI {
         public Text BMIText => bmiText;
 
         public IHistoryElmView Clone(Transform parent) {
-            return Instantiate(gameObject, parent).GetComponent<IHistoryElmView>();
+            var newObj = Instantiate(gameObject, parent);
+            // contentの一番上に新要素を追加するようにする
+            newObj.transform.SetSiblingIndex(0);
+            return newObj.GetComponent<IHistoryElmView>();
         }
     }
 }

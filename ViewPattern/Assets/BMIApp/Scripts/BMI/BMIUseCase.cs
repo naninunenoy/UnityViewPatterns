@@ -25,6 +25,7 @@ namespace BMIApp.BMI {
                 .NameInput
                 .Subscribe(x => {
                     entity.Name = x;
+                    bmiPresenter.SetSaveButtonEnable(ValidateEntity(entity));
                 })
                 .AddTo(disposableComponent);
             bmiPresenter
@@ -41,6 +42,7 @@ namespace BMIApp.BMI {
                     if (float.TryParse(x, out var val)) {
                         entity.Weight = val;
                         entity.BMI = UpdateBMI(entity);
+                        bmiPresenter.SetSaveButtonEnable(ValidateEntity(entity));
                     }
                 })
                 .AddTo(disposableComponent);
@@ -50,6 +52,7 @@ namespace BMIApp.BMI {
                     if (int.TryParse(x, out var val)) {
                         entity.Age = val;
                         entity.BMI = UpdateBMI(entity);
+                        bmiPresenter.SetSaveButtonEnable(ValidateEntity(entity));
                     }
                 })
                 .AddTo(disposableComponent);
@@ -81,8 +84,11 @@ namespace BMIApp.BMI {
             }
             var msg = GetBMIEvaluation(bmi);
             bmiPresenter.SetBMIResult($"{bmi:F1}({msg})");
-            bmiPresenter.SetSaveButtonEnable(true);
             return bmi;
+        }
+
+        bool ValidateEntity(IBMIEntity entity) {
+            return !string.IsNullOrWhiteSpace(entity.Name) && entity.BMI > 0.0F;
         }
 
         bool TryCalcBMI(float heightCm, float weightKg, out float bmi) {

@@ -7,14 +7,14 @@ using UniRx;
 namespace BMIApp.BMI {
     public class BMIUseCase<TEntity> : CleanArchitecture.IUseCase where TEntity : IBMIEntity, new() {
         readonly IBMIPresenter bmiPresenter;
-        readonly IBMIHistoryRepository<TEntity> bmiRepository;
+        readonly IPushHistoryDelegate dataPushListener;
         readonly Component disposableComponent;
 
         public BMIUseCase(IBMIPresenter bmiPresenter,
-                          IBMIHistoryRepository<TEntity> bmiRepository,
+                          IPushHistoryDelegate dataPushListener,
                           Component disposableComponent) {
             this.bmiPresenter = bmiPresenter;
-            this.bmiRepository = bmiRepository;
+            this.dataPushListener = dataPushListener;
             this.disposableComponent = disposableComponent;
         }
 
@@ -67,9 +67,9 @@ namespace BMIApp.BMI {
                 .AddTo(disposableComponent);
             bmiPresenter
                 .SaveButtonClickObservable
-                .Subscribe(async _ => {
+                .Subscribe(_ => {
                     entity.CreatedAt = DateTime.Now;
-                    await bmiRepository.SaveAsync(entity);
+                    dataPushListener?.OnPushBMIEntity(entity);
                 })
                 .AddTo(disposableComponent);
             bmiPresenter.SetSaveButtonEnable(false);

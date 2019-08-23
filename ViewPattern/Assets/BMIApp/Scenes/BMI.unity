@@ -332,6 +332,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedData: {fileID: 11400000, guid: f244c23dbe9ce8146ae2fb6aa52c77cd, type: 2}
   bmiView: {fileID: 488622656095085487}
+  historyView: {fileID: 6588852202219034493}
+  historyElmView: {fileID: 3825719310909573263, guid: f41b9e04066833844b5800e7d6943e45,
+    type: 3}
 --- !u!1 &1655612552
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,3 +936,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 585c1ac2a949ceb4c9c2c44c377151de, type: 3}
+--- !u!114 &6588852202219034493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3186914448977011983, guid: 585c1ac2a949ceb4c9c2c44c377151de,
+    type: 3}
+  m_PrefabInstance: {fileID: 6588852202219034492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81b84541cce3e4488e1cff510202ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

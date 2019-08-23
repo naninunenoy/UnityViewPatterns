@@ -335,6 +335,7 @@ MonoBehaviour:
   historyView: {fileID: 6588852202219034493}
   historyElmView: {fileID: 3825719310909573263, guid: f41b9e04066833844b5800e7d6943e45,
     type: 3}
+  accountView: {fileID: 1909656732}
 --- !u!1 &1655612552
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +427,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1909656732 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1113234575826996063, guid: 713c673529f7e2d4ea112eafd57ba643,
+    type: 3}
+  m_PrefabInstance: {fileID: 4807648742003054045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7580e7859560054fb962b229c5a70de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1975923576
 GameObject:
   m_ObjectHideFlags: 0

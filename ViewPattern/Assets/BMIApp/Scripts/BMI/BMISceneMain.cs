@@ -9,9 +9,11 @@ namespace BMIApp.BMI {
         [SerializeField] BMIView bmiView = default;
         [SerializeField] HistoryView historyView = default;
         [SerializeField] HistoryElmView historyElmView = default;
+        [SerializeField] AccountView accountView = default;
 
         IUseCase bmiUseCase;
         IUseCase historyUseCase;
+        IUseCase logoutUseCase;
 
         void Awake() {
             var historyDataStore = 
@@ -27,12 +29,17 @@ namespace BMIApp.BMI {
                 new BMIPresenter(bmiView),
                 historyUseCase as IPushHistoryDelegate,
                 this);
+            logoutUseCase = new LogoutUseCase(
+                new UserAccountRepository(sharedData),
+                new AccountPresenter(accountView),
+                this);
         }
 
         void Start() {
             // run UseCase
             bmiUseCase.Begin();
             historyUseCase.Begin();
+            logoutUseCase.Begin();
         }
     }
 }

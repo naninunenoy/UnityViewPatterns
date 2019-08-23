@@ -51,7 +51,7 @@ namespace BMIApp.BMI {
         }
 
         void AddToHistory(IBMIEntity entity) {
-            historyPresenter.Add(entity.Name, entity.BMI.ToString("F1"), entity.CreatedAt.ToString("MM/dd"));
+            historyPresenter.Add(entity.Name, entity.BMI.ToString("F1"), entity.CreatedAt.ToString("M/d"));
         }
     }
 }

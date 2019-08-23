@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BMIApp {
     [Serializable]
     public class BMIEntity : IBMIEntity {
-        const string dateTimeFormat = "yyyy-MM-dd+HH:mm:ss";
+        const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
         [SerializeField] string name;
         [SerializeField] float height;

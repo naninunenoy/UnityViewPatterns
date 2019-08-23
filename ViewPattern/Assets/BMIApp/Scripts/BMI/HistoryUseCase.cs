@@ -18,13 +18,12 @@ namespace BMIApp.BMI {
             this.disposableComponent = disposableComponent;
         }
 
-        public void Begin() {
+        public async void Begin() {
             // 履歴を全て追加
-            historyRepository.LoadAllAsync().ContinueWith(t => {
-                foreach (var entity in t.Result) {
-                    AddToHistory(entity);
-                }
-            });
+            var entities = await historyRepository.LoadAllAsync();
+            foreach (var entity in entities) {
+                AddToHistory(entity);
+            }
             // 履歴削除
             historyPresenter
                 .ClearButtonClickObservable
@@ -35,7 +34,7 @@ namespace BMIApp.BMI {
                 .AddTo(disposableComponent);
         }
 
-        public void OnPushBMIEntity(IBMIEntity entity) {
+        public async void OnPushBMIEntity(IBMIEntity entity) {
             // copy
             var newEntiry = new TEntity {
                 Name = entity.Name,
@@ -47,9 +46,8 @@ namespace BMIApp.BMI {
                 CreatedAt = entity.CreatedAt
             };
             // save
-            historyRepository.SaveAsync(newEntiry).ContinueWith(_ => {
-                AddToHistory(newEntiry);
-            });
+            await historyRepository.SaveAsync(newEntiry);
+            AddToHistory(newEntiry);
         }
 
         void AddToHistory(IBMIEntity entity) {

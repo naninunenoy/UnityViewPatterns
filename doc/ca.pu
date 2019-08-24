@@ -1,0 +1,104 @@
+@startuml BMIAppArchitecture
+
+package BMIApp {
+    /'
+    package CleanArchitecture {
+        interface ISceneMain
+        interface IUseCase {
+            void Begin()
+        }
+        interface IPresenter
+        interface IVew
+        interface IRepostiroy
+        interface IDataStore
+        interface IController
+        interface IEntity
+    }
+    '/
+    package Login {
+        class LoginMain
+        class AuthUseCase
+        class AlertUseCase
+        class SceneTransitionUseCase
+        interface IAuthResultDelegate {
+            void OnAuthSuccess()
+            void OnAuthFailure()
+        }
+        interface IAuthController
+        class DummyAuthController {
+            Task<string> TryGetTokenAsync(string, string)
+        }
+        interface ILoginPressenter {
+            IReadOnlyReactiveProperty IdInput { get }
+            IReadOnlyReactiveProperty PasswordInput { get }
+            IObservable<Unit> LoginButtonClickObservable { get }
+            void Begin()
+            void SetLoginButtonInteractive(bool)
+        }
+        class LoginPresenter
+        interface ILoginView {
+            InputField IdInputField { get }
+            InputField PasswordInputField { get }
+            Button LoginButton { get }
+        }
+        class LoginView
+        interface IAlertPresenter {
+            IObservable<Unit> CloseButtonClickObservable { get }
+            void Begin()
+            void Open(string)
+            void Close()
+        }
+        class AlertPresenter
+        interface IAlertView {
+            Button CloseButton { get }
+            Text AlertText { get }
+            Transform ViewTransform { get }
+        }
+        class AlertView
+    }
+    package BMI {
+    }
+
+    interface IUserAccountRepository {
+        string CurrentUserId { set get }
+        string CurrentUserToken { set get }
+        void Clear()
+    }
+    class UserAccountRepository
+    interface ISharedDataStore {
+        string CurrentUserId { set get }
+        string CurrentUserToken { set get }
+        void Clear()
+    }
+    class SharedScriptableObject
+}
+
+UserAccountRepository .up.|> IUserAccountRepository
+SharedScriptableObject .up.|> ISharedDataStore
+UserAccountRepository .down.> ISharedDataStore
+
+LoginPresenter .up.|> ILoginPressenter
+LoginPresenter .down.> ILoginView
+LoginView .up.|> ILoginView
+AlertPresenter .up.|> IAlertPresenter
+AlertView .up.|> IAlertView
+AlertPresenter .down.> IAlertView
+
+DummyAuthController .up.|> IAuthController
+
+AuthUseCase .down.> ILoginPressenter
+AuthUseCase .down.> IUserAccountRepository
+AuthUseCase .down.> IAuthController
+AuthUseCase .up.> IAuthResultDelegate
+
+
+AlertUseCase .down.> IAlertPresenter
+AlertUseCase .up.|> IAuthResultDelegate
+
+SceneTransitionUseCase .up.|> IAuthResultDelegate
+
+LoginMain -down-> AuthUseCase
+LoginMain -down-> AlertUseCase
+LoginMain -down-> SceneTransitionUseCase
+
+@enduml

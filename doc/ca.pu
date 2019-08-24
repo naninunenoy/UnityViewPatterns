@@ -57,6 +57,96 @@ package BMIApp {
         class AlertView
     }
     package BMI {
+        class BMISceneMain
+        class BMIUseCase
+        class HistoryUseCase
+        class LogoutUseCase
+        interface IPushHistoryDelegate {
+            void OnPushBMIEntity(IBMIEntity)
+        }
+        interface IBMIPresenter {
+            IReadOnlyReactiveProperty<string> NameInput { get }
+            IReadOnlyReactiveProperty<string> HeightInput { get }
+            IReadOnlyReactiveProperty<string> WeightInput { get }
+            IReadOnlyReactiveProperty<string> AgeInput { get }
+            IReadOnlyReactiveProperty<bool> GenderMaleSelect { get }
+            IReadOnlyReactiveProperty<bool> GenderFemaleSelect { get }
+            IObservable<Unit> SaveButtonClickObservable { get }
+            void Begin()
+            void SetBMIResult(string)
+            void SetSaveButtonEnable(bool)
+        }
+        class BMIPresenter
+        interface IBMIView {
+            InputField NameInput { get }
+            InputField HeightInput { get }
+            InputField WeightInput { get }
+            InputField AgeInput { get }
+            Toggle GenderMaleToggle { get }
+            Toggle GenderFemaleToggle { get }
+            Text BMIText { get }
+            Button SaveButton { get }
+        }
+        class BMIView
+        interface IHistoryListPresenter {
+            IObservable<Unit> ClearButtonClickObservable { get }
+            void Add(string, string, string)
+            void ClearList()
+        }
+        class HistoryListPresenter
+        interface IHisotryView {
+            Button ClearButton { get }
+            Transform ViewTransform { get }
+        }
+        class HistoryView
+        interface IHistoryElmView {
+            Text DateText { get }
+            Text NameText { get }
+            Text BMIText { get }
+            IHistoryElmView Clone(Transform);
+        }
+        class HistoryElmView
+        interface IAccountPresenter {
+            void Begin()
+            IObservable<Unit> LogoutButtonClickObservable { get }
+            void SetAccountText(string)
+        }
+        class AccountPresenter
+        interface IAccountView {
+            Button LogoutButon { get }
+            Text AccountNameText { get }
+        }
+        class AccountView
+        enum Gender {
+            None
+            Male
+            Female
+        }
+        interface IBMIEntity {
+            string Name { set get }
+            float Height { set get }
+            float Weight { set get }
+            int Age { set get }
+            Gender Gender { set get }
+            float BMI { set get }
+            DateTime CreatedAt { set get }
+        }
+        class BMIEntity
+        class BMIEntityArray
+        interface IHistoryRepository {
+            Task SaveAsync(IBMIEntity data)
+            Task<IEnumerable<IBMIEntity>> LoadAllAsync()
+            Task DeleteAllAsync()
+        }
+        class HistoryRepository
+        interface IHistoryDataStore {
+            IList<IBMIEntity> Datas { get }
+            Task LoadAsync();
+            Task SaveAsync();
+            Task DeleteAsync();
+        }
+        class PlayerPrefsHistoryDataStore
+        class TemporaryHistoryDataStore
     }
 
     interface IUserAccountRepository {
@@ -73,32 +163,66 @@ package BMIApp {
     class SharedScriptableObject
 }
 
+'' ログインシーン
+LoginMain -down-> AuthUseCase
+LoginMain -down-> AlertUseCase
+LoginMain -down-> SceneTransitionUseCase
+
+AuthUseCase .down.> ILoginPressenter
+AuthUseCase .up.> IAuthResultDelegate
+LoginPresenter .up.|> ILoginPressenter
+LoginPresenter .down.> ILoginView
+AuthUseCase .down.> IUserAccountRepository
+LoginView .up.|> ILoginView
 UserAccountRepository .up.|> IUserAccountRepository
 SharedScriptableObject .up.|> ISharedDataStore
 UserAccountRepository .down.> ISharedDataStore
+AuthUseCase .down.> IAuthController
+DummyAuthController .up.|> IAuthController
 
-LoginPresenter .up.|> ILoginPressenter
-LoginPresenter .down.> ILoginView
-LoginView .up.|> ILoginView
+AlertUseCase .down.> IAlertPresenter
+AlertUseCase .up.|> IAuthResultDelegate
 AlertPresenter .up.|> IAlertPresenter
 AlertView .up.|> IAlertView
 AlertPresenter .down.> IAlertView
 
-DummyAuthController .up.|> IAuthController
-
-AuthUseCase .down.> ILoginPressenter
-AuthUseCase .down.> IUserAccountRepository
-AuthUseCase .down.> IAuthController
-AuthUseCase .up.> IAuthResultDelegate
-
-
-AlertUseCase .down.> IAlertPresenter
-AlertUseCase .up.|> IAuthResultDelegate
-
 SceneTransitionUseCase .up.|> IAuthResultDelegate
 
-LoginMain -down-> AuthUseCase
-LoginMain -down-> AlertUseCase
-LoginMain -down-> SceneTransitionUseCase
+'' BMIシーン
+BMISceneMain -down-> BMIUseCase
+BMISceneMain -down-> HistoryUseCase
+BMISceneMain -down-> LogoutUseCase
+
+IBMIEntity -up-> Gender
+BMIEntity .down.|> IBMIEntity
+IHistoryDataStore -up-> IBMIEntity
+IHistoryRepository -up-> IBMIEntity
+BMIEntityArray -right-> BMIEntity
+PlayerPrefsHistoryDataStore ---> BMIEntityArray
+
+BMIUseCase .up.> IPushHistoryDelegate
+BMIUseCase .down.> IBMIPresenter
+BMIPresenter .up.|> IBMIPresenter
+BMIPresenter .down.> IBMIView
+BMIView .up.|> IBMIView
+
+HistoryUseCase .up.|> IPushHistoryDelegate
+HistoryUseCase .down.> IHistoryListPresenter
+HistoryListPresenter .up.|> IHistoryListPresenter
+HistoryListPresenter .down.> IHisotryView
+HistoryListPresenter .down.> IHistoryElmView
+HistoryView .up.|> IHisotryView
+HistoryElmView .up.|> IHistoryElmView
+HistoryUseCase .down.> IHistoryRepository
+HistoryRepository .up.|> IHistoryRepository
+HistoryRepository .down.> IHistoryDataStore
+TemporaryHistoryDataStore .up.|> IHistoryDataStore
+PlayerPrefsHistoryDataStore .up.|> IHistoryDataStore
+
+LogoutUseCase .down.> IUserAccountRepository
+LogoutUseCase .down.> IAccountPresenter
+AccountPresenter .up.|> IAccountPresenter
+AccountPresenter .down.> IAccountView
+AccountView .up.|> IAccountView
 
 @enduml

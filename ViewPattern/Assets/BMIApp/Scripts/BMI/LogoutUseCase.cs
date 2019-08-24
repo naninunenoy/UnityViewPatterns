@@ -7,10 +7,10 @@ using UniRx;
 namespace BMIApp.BMI {
     public class LogoutUseCase : CleanArchitecture.IUseCase {
         readonly IUserAccountRepository repository;
-        readonly AccountPresenter presenter;
+        readonly IAccountPresenter presenter;
         readonly Component disposablesComponent;
 
-        public LogoutUseCase(IUserAccountRepository repository, AccountPresenter presenter,
+        public LogoutUseCase(IUserAccountRepository repository, IAccountPresenter presenter,
                              Component disposablesComponent) {
             this.repository = repository;
             this.presenter = presenter;

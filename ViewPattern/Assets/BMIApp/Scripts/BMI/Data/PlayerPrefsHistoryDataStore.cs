@@ -7,29 +7,28 @@ using UnityEngine;
 namespace BMIApp.BMI {
     public class PlayerPrefsHistoryDataStore : IHistoryDataStore {
         readonly string key;
-        public IList<IBMIEntity> datas;
-        public IList<IBMIEntity> Datas => datas;
+        public IList<IBMIEntity> Datas { private set; get; }
         public PlayerPrefsHistoryDataStore(string accountId) {
-            this.key = accountId;
+            key = accountId;
         }
 
         public Task LoadAsync() {
             var json = PlayerPrefs.GetString(key);
             if (string.IsNullOrEmpty(json)) {
-                datas = new List<IBMIEntity>();
+                Datas = new List<IBMIEntity>();
                 return Task.CompletedTask;
             }
             var arr = JsonUtility.FromJson<BMIEntityArray>(json);
             if (arr?.Items == null || arr.Items.Count == 0) {
-                datas = new List<IBMIEntity>();
+                Datas = new List<IBMIEntity>();
                 return Task.CompletedTask;
             }
-            datas = arr.Items.Cast<IBMIEntity>().ToList();
+            Datas = arr.Items.Cast<IBMIEntity>().ToList();
             return Task.CompletedTask;
         }
 
         public Task SaveAsync() {
-            var arr = new BMIEntityArray(datas.ToArray());
+            var arr = new BMIEntityArray(Datas.ToArray());
             var json = JsonUtility.ToJson(arr) ?? "{}";
             PlayerPrefs.SetString(key, json);
             return Task.CompletedTask;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BMIApp {
+namespace BMIApp.BMI {
     [Serializable]
     public class BMIEntity : IBMIEntity {
         const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";

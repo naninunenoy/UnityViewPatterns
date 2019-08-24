@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace BMIApp {
+namespace BMIApp.BMI {
     public class BMIHistoryRepository : IBMIHistoryRepository<BMIEntity> {
         readonly IHistoryDataStore<BMIEntity> dataStore;
 

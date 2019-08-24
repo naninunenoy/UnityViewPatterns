@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BMIApp {
+namespace BMIApp.BMI {
     public enum Gender { None = 0, Male, Female }
     public interface IBMIEntity : CleanArchitecture.IEntity {
         string Name { set; get; }

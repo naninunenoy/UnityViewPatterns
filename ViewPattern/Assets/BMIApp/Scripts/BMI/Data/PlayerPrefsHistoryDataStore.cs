@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
 
-namespace BMIApp {
+namespace BMIApp.BMI {
     public class PlayerPrefsHistoryDataStore : IHistoryDataStore<BMIEntity> {
         readonly string key;
         public IList<BMIEntity> datas;

@@ -5,7 +5,7 @@ using UnityEngine;
 using UniRx;
 
 namespace BMIApp.BMI {
-    public class HistoryUseCase<TEntity> : CleanArchitecture.IUseCase , IPushHistoryDelegate where TEntity : IBMIEntity, new() {
+    public class HistoryUseCase: CleanArchitecture.IUseCase , IPushHistoryDelegate {
         readonly IHistoryListPresenter historyPresenter;
         readonly IBMIHistoryRepository historyRepository;
         readonly Component disposableComponent;
@@ -35,19 +35,9 @@ namespace BMIApp.BMI {
         }
 
         public async void OnPushBMIEntity(IBMIEntity entity) {
-            // copy
-            var newEntiry = new TEntity {
-                Name = entity.Name,
-                Height = entity.Height,
-                Weight = entity.Weight,
-                Age = entity.Age,
-                Gender = entity.Gender,
-                BMI = entity.BMI,
-                CreatedAt = entity.CreatedAt
-            };
             // save
-            await historyRepository.SaveAsync(newEntiry);
-            AddToHistory(newEntiry);
+            await historyRepository.SaveAsync(entity);
+            AddToHistory(entity);
         }
 
         void AddToHistory(IBMIEntity entity) {

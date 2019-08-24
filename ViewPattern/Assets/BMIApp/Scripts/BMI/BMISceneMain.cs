@@ -21,7 +21,7 @@ namespace BMIApp.BMI {
                 (new TemporaryHistoryDataStore() as IHistoryDataStore):
                 (new PlayerPrefsHistoryDataStore(sharedData.CurrentUserId) as IHistoryDataStore);
             // create UseCase
-            historyUseCase = new HistoryUseCase<BMIEntity>(
+            historyUseCase = new HistoryUseCase(
                     new HistoryListPresenter(historyView, historyElmView),
                     new BMIHistoryRepository(historyDataStore),
                     this);

@@ -17,9 +17,15 @@ package BMIApp {
     '/
     package Login {
         class LoginMain
-        class AuthUseCase
-        class AlertUseCase
-        class SceneTransitionUseCase
+        class AuthUseCase {
+            void Begin()
+        }
+        class AlertUseCase {
+            void Begin()
+        }
+        class SceneTransitionUseCase {
+            void Begin()
+        }
         interface IAuthResultDelegate {
             void OnAuthSuccess()
             void OnAuthFailure()
@@ -58,9 +64,15 @@ package BMIApp {
     }
     package BMI {
         class BMISceneMain
-        class BMIUseCase
-        class HistoryUseCase
-        class LogoutUseCase
+        class BMIUseCase {
+            void Begin()
+        }
+        class HistoryUseCase {
+            void Begin()
+        }
+        class LogoutUseCase {
+            void Begin()
+        }
         interface IPushHistoryDelegate {
             void OnPushBMIEntity(IBMIEntity)
         }
@@ -225,4 +237,5 @@ AccountPresenter .up.|> IAccountPresenter
 AccountPresenter .down.> IAccountView
 AccountView .up.|> IAccountView
 
+IAccountPresenter -[hidden]left-> IHistoryRepository
 @enduml

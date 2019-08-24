@@ -5,10 +5,10 @@ using System.Linq;
 using UnityEngine;
 
 namespace BMIApp.BMI {
-    public class PlayerPrefsHistoryDataStore : IHistoryDataStore<BMIEntity> {
+    public class PlayerPrefsHistoryDataStore : IHistoryDataStore {
         readonly string key;
-        public IList<BMIEntity> datas;
-        public IList<BMIEntity> Datas => datas;
+        public IList<IBMIEntity> datas;
+        public IList<IBMIEntity> Datas => datas;
         public PlayerPrefsHistoryDataStore(string accountId) {
             this.key = accountId;
         }
@@ -16,15 +16,15 @@ namespace BMIApp.BMI {
         public Task LoadAsync() {
             var json = PlayerPrefs.GetString(key);
             if (string.IsNullOrEmpty(json)) {
-                datas = new List<BMIEntity>();
+                datas = new List<IBMIEntity>();
                 return Task.CompletedTask;
             }
             var arr = JsonUtility.FromJson<BMIEntityArray>(json);
             if (arr?.Items == null || arr.Items.Count == 0) {
-                datas = new List<BMIEntity>();
+                datas = new List<IBMIEntity>();
                 return Task.CompletedTask;
             }
-            datas = arr.Items.ToList();
+            datas = arr.Items.Cast<IBMIEntity>().ToList();
             return Task.CompletedTask;
         }
 

@@ -7,11 +7,11 @@ using UniRx;
 namespace BMIApp.BMI {
     public class HistoryUseCase<TEntity> : CleanArchitecture.IUseCase , IPushHistoryDelegate where TEntity : IBMIEntity, new() {
         readonly IHistoryListPresenter historyPresenter;
-        readonly IBMIHistoryRepository<TEntity> historyRepository;
+        readonly IBMIHistoryRepository historyRepository;
         readonly Component disposableComponent;
 
         public HistoryUseCase(IHistoryListPresenter historyPresenter, 
-                              IBMIHistoryRepository<TEntity> historyRepository,
+                              IBMIHistoryRepository historyRepository,
                               Component disposableComponent) {
             this.historyPresenter = historyPresenter;
             this.historyRepository = historyRepository;

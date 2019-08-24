@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BMIApp.BMI {
@@ -39,6 +40,19 @@ namespace BMIApp.BMI {
     public class BMIEntityArray {
         [SerializeField] BMIEntity[] items;
         public BMIEntityArray(BMIEntity[] items) { this.items = items; }
+        public BMIEntityArray(IBMIEntity[] items) {
+            this.items = items.Select(x => 
+                new BMIEntity {
+                    Name = x.Name,
+                    Height = x.Height,
+                    Weight = x.Weight,
+                    Age = x.Age,
+                    Gender = x.Gender,
+                    BMI = x.BMI,
+                    CreatedAt = x.CreatedAt
+                }
+            ).ToArray();
+        }
         public IReadOnlyList<BMIEntity> Items { get => items; }
     }
 }

@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace BMIApp.BMI {
-    public interface IBMIHistoryRepository<T> : CleanArchitecture.IRepository where T : IBMIEntity {
-        Task SaveAsync(T data);
-        Task<IEnumerable<T>> LoadAllAsync();
+    public interface IBMIHistoryRepository : CleanArchitecture.IRepository {
+        Task SaveAsync(IBMIEntity data);
+        Task<IEnumerable<IBMIEntity>> LoadAllAsync();
         Task DeleteAllAsync();
     }
 }

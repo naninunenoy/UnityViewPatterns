@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace BMIApp.BMI {
-    public class TemporaryHistoryDataStore : IHistoryDataStore<BMIEntity> {
-        public IList<BMIEntity> Datas { private set; get; }
+    public class TemporaryHistoryDataStore : IHistoryDataStore {
+        public IList<IBMIEntity> Datas { private set; get; }
 
         public TemporaryHistoryDataStore() {
-            Datas = new List<BMIEntity>();
+            Datas = new List<IBMIEntity>();
         }
 
         public Task DeleteAsync() {

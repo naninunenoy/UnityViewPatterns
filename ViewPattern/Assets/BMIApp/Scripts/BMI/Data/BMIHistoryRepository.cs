@@ -4,19 +4,19 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace BMIApp.BMI {
-    public class BMIHistoryRepository : IBMIHistoryRepository<BMIEntity> {
-        readonly IHistoryDataStore<BMIEntity> dataStore;
+    public class BMIHistoryRepository : IBMIHistoryRepository {
+        readonly IHistoryDataStore dataStore;
 
-        public BMIHistoryRepository(IHistoryDataStore<BMIEntity> dataStore) {
+        public BMIHistoryRepository(IHistoryDataStore dataStore) {
             this.dataStore = dataStore;
         }
 
-        public async Task<IEnumerable<BMIEntity>> LoadAllAsync() {
+        public async Task<IEnumerable<IBMIEntity>> LoadAllAsync() {
             await dataStore.LoadAsync();
             return dataStore.Datas;
         }
 
-        public async Task SaveAsync(BMIEntity data) {
+        public async Task SaveAsync(IBMIEntity data) {
             dataStore.Datas.Add(data);
             await dataStore.SaveAsync();
         }

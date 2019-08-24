@@ -18,8 +18,8 @@ namespace BMIApp.BMI {
         void Awake() {
             var historyDataStore = 
                 string.IsNullOrEmpty(sharedData.CurrentUserId) ?
-                (new TemporaryHistoryDataStore() as IHistoryDataStore<BMIEntity>):
-                (new PlayerPrefsHistoryDataStore(sharedData.CurrentUserId) as IHistoryDataStore<BMIEntity>);
+                (new TemporaryHistoryDataStore() as IHistoryDataStore):
+                (new PlayerPrefsHistoryDataStore(sharedData.CurrentUserId) as IHistoryDataStore);
             // create UseCase
             historyUseCase = new HistoryUseCase<BMIEntity>(
                     new HistoryListPresenter(historyView, historyElmView),

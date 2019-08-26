@@ -254,6 +254,6 @@ AccountPresenter .down.> IAccountView
 AccountView .up.|> IAccountView
 
 IAccountPresenter -[hidden]left-> IHistoryRepository
-BMIUseCase -[hidden]right-> IBMIDataTransferObject
-BMIUseCase -[hidden]right-> IBMIDomain
+BMISceneMain -[hidden]right-> IBMIDataTransferObject
+BMISceneMain -[hidden]right-> IBMIDomain
 @enduml

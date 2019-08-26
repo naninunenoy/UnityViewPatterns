@@ -20,9 +20,9 @@ namespace BMIApp.BMI {
 
         public async void Begin() {
             // 履歴を全て追加
-            var entities = await historyRepository.LoadAllAsync();
-            foreach (var entity in entities) {
-                AddToHistory(entity);
+            var datas = await historyRepository.LoadAllAsync();
+            foreach (var data in datas) {
+                AddToHistory(data);
             }
             // 履歴削除
             historyPresenter
@@ -34,14 +34,14 @@ namespace BMIApp.BMI {
                 .AddTo(disposableComponent);
         }
 
-        public async void OnPushBMIEntity(IBMIDataTransferObject entity) {
+        public async void OnPushBMIData(IBMIDataTransferObject data) {
             // save
-            await historyRepository.SaveAsync(entity);
-            AddToHistory(entity);
+            await historyRepository.SaveAsync(data);
+            AddToHistory(data);
         }
 
-        void AddToHistory(IBMIDataTransferObject entity) {
-            historyPresenter.Add(entity.Name, entity.BMI.ToString("F1"), entity.CreatedAt.ToString("M/d"));
+        void AddToHistory(IBMIDataTransferObject data) {
+            historyPresenter.Add(data.Name, data.BMI.ToString("F1"), data.CreatedAt.ToString("M/d"));
         }
     }
 }

@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BMIApp.CleanArchitecture {
-    public interface IDomainObject {
+    public interface IDomain {
     }
 }

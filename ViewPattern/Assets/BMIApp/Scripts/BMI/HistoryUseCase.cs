@@ -34,13 +34,13 @@ namespace BMIApp.BMI {
                 .AddTo(disposableComponent);
         }
 
-        public async void OnPushBMIEntity(IBMIEntity entity) {
+        public async void OnPushBMIEntity(IBMIDataTransferObject entity) {
             // save
             await historyRepository.SaveAsync(entity);
             AddToHistory(entity);
         }
 
-        void AddToHistory(IBMIEntity entity) {
+        void AddToHistory(IBMIDataTransferObject entity) {
             historyPresenter.Add(entity.Name, entity.BMI.ToString("F1"), entity.CreatedAt.ToString("M/d"));
         }
     }

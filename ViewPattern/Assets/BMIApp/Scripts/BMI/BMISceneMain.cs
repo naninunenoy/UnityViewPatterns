@@ -25,7 +25,7 @@ namespace BMIApp.BMI {
                     new HistoryListPresenter(historyView, historyElmView),
                     new BMIHistoryRepository(historyDataStore),
                     this);
-            bmiUseCase = new BMIUseCase<BMIEntity>(
+            bmiUseCase = new BMIUseCase<BMIDataTransferObject>(
                 new BMIPresenter(bmiView),
                 historyUseCase as IPushHistoryDelegate,
                 this);

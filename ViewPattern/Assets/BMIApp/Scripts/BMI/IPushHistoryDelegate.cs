@@ -4,6 +4,6 @@ using UnityEngine;
 
 namespace BMIApp.BMI {
     public interface IPushHistoryDelegate {
-        void OnPushBMIEntity(IBMIEntity entity);
+        void OnPushBMIEntity(IBMIDataTransferObject entity);
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace BMIApp.BMI {
     public interface IBMIHistoryRepository : CleanArchitecture.IRepository {
-        Task SaveAsync(IBMIEntity data);
-        Task<IEnumerable<IBMIEntity>> LoadAllAsync();
+        Task SaveAsync(IBMIDataTransferObject data);
+        Task<IEnumerable<IBMIDataTransferObject>> LoadAllAsync();
         Task DeleteAllAsync();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UniRx;
 
 namespace BMIApp.BMI {
-    public class BMIUseCase<TEntity> : CleanArchitecture.IUseCase where TEntity : IBMIEntity, new() {
+    public class BMIUseCase<TEntity> : CleanArchitecture.IUseCase where TEntity : IBMIDataTransferObject, new() {
         readonly IBMIPresenter bmiPresenter;
         readonly IPushHistoryDelegate dataPushListener;
         readonly Component disposableComponent;
@@ -78,7 +78,7 @@ namespace BMIApp.BMI {
             bmiPresenter.SetSaveButtonEnable(false);
         }
 
-        float UpdateBMI(IBMIEntity entity) {
+        float UpdateBMI(IBMIDataTransferObject entity) {
             if (!TryCalcBMI(entity.Height, entity.Weight, out float bmi)) {
                 return 0.0F;
             }
@@ -87,7 +87,7 @@ namespace BMIApp.BMI {
             return bmi;
         }
 
-        bool ValidateEntity(IBMIEntity entity) {
+        bool ValidateEntity(IBMIDataTransferObject entity) {
             return !string.IsNullOrWhiteSpace(entity.Name) && entity.BMI > 0.0F;
         }
 

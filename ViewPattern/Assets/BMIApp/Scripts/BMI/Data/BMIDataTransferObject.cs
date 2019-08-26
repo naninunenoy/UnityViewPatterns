@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BMIApp.BMI {
     [Serializable]
-    public class BMIEntity : IBMIEntity {
+    public class BMIDataTransferObject : IBMIDataTransferObject {
         const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
         [SerializeField] string name;
@@ -17,7 +17,7 @@ namespace BMIApp.BMI {
         [SerializeField] float bmi;
         [SerializeField] string createdAt;
 
-        public BMIEntity() {
+        public BMIDataTransferObject() {
             name = string.Empty;
             height = 0.0F;
             weight = 0.0F;
@@ -37,12 +37,12 @@ namespace BMIApp.BMI {
     }
 
     [Serializable]
-    public class BMIEntityArray {
-        [SerializeField] BMIEntity[] items;
-        public BMIEntityArray(BMIEntity[] items) { this.items = items; }
-        public BMIEntityArray(IBMIEntity[] items) {
+    public class BMIDataTransferObjectArray {
+        [SerializeField] BMIDataTransferObject[] items;
+        public BMIDataTransferObjectArray(BMIDataTransferObject[] items) { this.items = items; }
+        public BMIDataTransferObjectArray(IBMIDataTransferObject[] items) {
             this.items = items.Select(x => 
-                new BMIEntity {
+                new BMIDataTransferObject {
                     Name = x.Name,
                     Height = x.Height,
                     Weight = x.Weight,
@@ -53,6 +53,6 @@ namespace BMIApp.BMI {
                 }
             ).ToArray();
         }
-        public IReadOnlyList<BMIEntity> Items { get => items; }
+        public IReadOnlyList<BMIDataTransferObject> Items { get => items; }
     }
 }

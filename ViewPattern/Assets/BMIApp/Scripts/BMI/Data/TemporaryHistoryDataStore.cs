@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace BMIApp.BMI {
     public class TemporaryHistoryDataStore : IHistoryDataStore {
-        public IList<IBMIEntity> Datas { private set; get; }
+        public IList<IBMIDataTransferObject> Datas { private set; get; }
 
         public TemporaryHistoryDataStore() {
-            Datas = new List<IBMIEntity>();
+            Datas = new List<IBMIDataTransferObject>();
         }
 
         public Task DeleteAsync() {

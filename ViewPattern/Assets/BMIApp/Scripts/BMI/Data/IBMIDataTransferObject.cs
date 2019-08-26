@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BMIApp.BMI {
     public enum Gender { None = 0, Male, Female }
-    public interface IBMIEntity : CleanArchitecture.IEntity {
+    public interface IBMIDataTransferObject : CleanArchitecture.IDataTransferObject {
         string Name { set; get; }
         float Height { set; get; }
         float Weight { set; get; }

@@ -11,12 +11,12 @@ namespace BMIApp.BMI {
             this.dataStore = dataStore;
         }
 
-        public async Task<IEnumerable<IBMIEntity>> LoadAllAsync() {
+        public async Task<IEnumerable<IBMIDataTransferObject>> LoadAllAsync() {
             await dataStore.LoadAsync();
             return dataStore.Datas;
         }
 
-        public async Task SaveAsync(IBMIEntity data) {
+        public async Task SaveAsync(IBMIDataTransferObject data) {
             dataStore.Datas.Add(data);
             await dataStore.SaveAsync();
         }

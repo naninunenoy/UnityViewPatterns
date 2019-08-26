@@ -74,7 +74,18 @@ package BMIApp {
             void Begin()
         }
         interface IPushHistoryDelegate {
-            void OnPushBMIEntity(IBMIEntity)
+            void OnPushBMIData(IBMIDataTransferObject)
+        }
+        package Domain {
+            interface IBMIDomainObject {
+                float Height { get }
+                float Weight { get }
+            }
+            interface IBMIDomain {
+                float CalcBMI(IBMIDomainObject)
+                string EvaluateBMI(IBMIDomainObject)
+            }
+            class BMIDomain
         }
         interface IBMIPresenter {
             IReadOnlyReactiveProperty<string> NameInput { get }
@@ -134,7 +145,7 @@ package BMIApp {
             Male
             Female
         }
-        interface IBMIEntity {
+        interface IBMIDataTransferObject {
             string Name { set get }
             float Height { set get }
             float Weight { set get }
@@ -143,16 +154,16 @@ package BMIApp {
             float BMI { set get }
             DateTime CreatedAt { set get }
         }
-        class BMIEntity
-        class BMIEntityArray
+        class BMIDataTransferObject
+        class BMIDataTransferObjectArray
         interface IHistoryRepository {
-            Task SaveAsync(IBMIEntity data)
-            Task<IEnumerable<IBMIEntity>> LoadAllAsync()
+            Task SaveAsync(IBMIDataTransferObject data)
+            Task<IEnumerable<IBMIDataTransferObject>> LoadAllAsync()
             Task DeleteAllAsync()
         }
         class HistoryRepository
         interface IHistoryDataStore {
-            IList<IBMIEntity> Datas { get }
+            IList<IBMIDataTransferObject> Datas { get }
             Task LoadAsync();
             Task SaveAsync();
             Task DeleteAsync();
@@ -205,12 +216,17 @@ BMISceneMain -down-> BMIUseCase
 BMISceneMain -down-> HistoryUseCase
 BMISceneMain -down-> LogoutUseCase
 
-IBMIEntity -up-> Gender
-BMIEntity .down.|> IBMIEntity
-IHistoryDataStore -up-> IBMIEntity
-IHistoryRepository -up-> IBMIEntity
-BMIEntityArray -right-> BMIEntity
-PlayerPrefsHistoryDataStore ---> BMIEntityArray
+BMIDomain .|> IBMIDomain
+IBMIDomain -> IBMIDomainObject
+BMIUseCase -> IBMIDomain
+BMIDataTransferObject .|> IBMIDomainObject
+
+IBMIDataTransferObject -up-> Gender
+BMIDataTransferObject .down.|> IBMIDataTransferObject
+IHistoryDataStore -up-> IBMIDataTransferObject
+IHistoryRepository -up-> IBMIDataTransferObject
+BMIDataTransferObjectArray -right-> BMIDataTransferObject
+PlayerPrefsHistoryDataStore ---> BMIDataTransferObjectArray
 
 BMIUseCase .up.> IPushHistoryDelegate
 BMIUseCase .down.> IBMIPresenter
@@ -238,4 +254,6 @@ AccountPresenter .down.> IAccountView
 AccountView .up.|> IAccountView
 
 IAccountPresenter -[hidden]left-> IHistoryRepository
+BMIUseCase -[hidden]right-> IBMIDataTransferObject
+BMIUseCase -[hidden]right-> IBMIDomain
 @enduml

@@ -30,10 +30,10 @@ package BMIApp {
             void OnAuthSuccess()
             void OnAuthFailure()
         }
-        interface IAuthController
-        class DummyAuthController {
+        interface IAuthController {
             Task<string> TryGetTokenAsync(string, string)
         }
+        class DummyAuthController
         interface ILoginPressenter {
             IReadOnlyReactiveProperty IdInput { get }
             IReadOnlyReactiveProperty PasswordInput { get }

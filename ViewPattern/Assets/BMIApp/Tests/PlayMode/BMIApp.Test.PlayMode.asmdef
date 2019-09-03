@@ -1,6 +1,8 @@
 {
     "name": "BMIApp.Test.PlayMode",
-    "references": [],
+    "references": [
+        "GUID:b8ae40cc417c748a58489b7f338a876e"
+    ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],

@@ -1,12 +1,10 @@
 {
-    "name": "EditMode",
+    "name": "BMIApp.Test.PlayMode",
     "references": [],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

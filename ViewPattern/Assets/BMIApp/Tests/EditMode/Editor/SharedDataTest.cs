@@ -4,12 +4,13 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace BMIApp.Tests {
+namespace BMIApp.Tests.EditMode {
     public class SharedDataTest {
         [Test]
         public void SharedScriptableObjectTest() {
             var obj = ScriptableObject.CreateInstance<SharedScriptableObject>();
             Assert.NotNull(obj);
+            Assert.IsInstanceOf<ISharedData>(obj);
             Assert.IsEmpty(obj.CurrentUserId);
             Assert.IsEmpty(obj.CurrentUserToken);
             obj.CurrentUserId = "test_id";
@@ -20,9 +21,9 @@ namespace BMIApp.Tests {
 
         [Test]
         public void UserAccountRepositoryTest() {
-            var obj = ScriptableObject.CreateInstance<SharedScriptableObject>();
-            var rep = new UserAccountRepository(obj);
+            var rep = new UserAccountRepository(ScriptableObject.CreateInstance<SharedScriptableObject>());
             Assert.NotNull(rep);
+            Assert.IsInstanceOf<IUserAccountRepository>(rep);
             Assert.IsEmpty(rep.CurrentUserId);
             Assert.IsEmpty(rep.CurrentUserToken);
             rep.CurrentUserId = "test_id";

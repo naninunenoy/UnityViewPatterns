@@ -4,31 +4,16 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Zenject;
 using BMIApp.Login;
 
 namespace BMIApp.Tests.PlayMode {
-    public class LoginSceneTest {
-        LoginMain main = default;
-
-        [UnitySetUp]
-        public IEnumerator SetUpTest() {
-            var load = SceneManager.LoadSceneAsync("Login");
-            while (!load.isDone) {
-                yield return null;
-            }
-        }
-
-        [UnityTearDown]
-        public IEnumerator TearDownTest() {
-            main = default;
-            yield return null;
-        }
+    public class LoginSceneTest : SceneTestFixture {
+        const string sceneName = "Login";
 
         [UnityTest]
-        public IEnumerator FindMainTest() {
-            main = GameObject.Find("LoginMain").GetComponent<LoginMain>();
-            Assert.IsNotNull(main);
-            yield return null;
+        public IEnumerator SceneTest() {
+            yield return LoadScene(sceneName);
         }
     }
 }

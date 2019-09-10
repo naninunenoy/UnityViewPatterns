@@ -1,7 +1,8 @@
 {
     "name": "BMIApp",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

@@ -1,41 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 using BMIApp.CleanArchitecture;
 
 namespace BMIApp.BMI {
     public class BMISceneMain : MonoBehaviour, ISceneMain {
-        [SerializeField] SharedScriptableObject sharedData = default;
-        [SerializeField] BMIView bmiView = default;
-        [SerializeField] HistoryView historyView = default;
-        [SerializeField] HistoryElmView historyElmView = default;
-        [SerializeField] AccountView accountView = default;
-
         IUseCase bmiUseCase;
         IUseCase historyUseCase;
         IUseCase logoutUseCase;
 
-        void Awake() {
-            var historyDataStore = 
-                string.IsNullOrEmpty(sharedData.CurrentUserId) ?
-                (new TemporaryHistoryDataStore() as IHistoryDataStore):
-                (new PlayerPrefsHistoryDataStore(sharedData.CurrentUserId) as IHistoryDataStore);
-            // create UseCase
+        [Inject]
+        void ConstructUseCases(IHistoryListPresenter historyListPresenter,
+                               IBMIHistoryRepository historyRepository,
+                               IBMIPresenter bmiPresenter,
+                               IUserAccountRepository userAccountRepository,
+                               IAccountPresenter accountPresenter) {
             historyUseCase = new HistoryUseCase(
-                    new HistoryListPresenter(historyView, historyElmView),
-                    new BMIHistoryRepository(historyDataStore),
-                    this);
+                historyListPresenter, 
+                historyRepository, 
+                this);
             bmiUseCase = new BMIUseCase<BMIDataTransferObject>(
-                new BMIPresenter(bmiView),
+                bmiPresenter,
                 historyUseCase as IPushHistoryDelegate,
                 this);
             logoutUseCase = new LogoutUseCase(
-                new UserAccountRepository(sharedData),
-                new AccountPresenter(accountView),
+                userAccountRepository,
+                accountPresenter,
                 this);
         }
 
-        void Start() {
+        void Awake() {
             // run UseCase
             bmiUseCase.Begin();
             historyUseCase.Begin();

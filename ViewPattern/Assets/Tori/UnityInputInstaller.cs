@@ -8,7 +8,8 @@ namespace ZenjectSample {
             Container
                 .Bind<IInputProvider>()   // IInputProviderが要求されたら
                 .To<UnityInputProvider>() // UnityInputProviderを生成して注入する
-                .AsCached();              // ただし、UnityInputProviderが生成済みなら使い回す
+                .AsCached()               // ただし、UnityInputProviderが生成済みなら使い回す
+                .IfNotBound();            // テストコードなどで事前にBindされている場合は無視
         }
     }
 }

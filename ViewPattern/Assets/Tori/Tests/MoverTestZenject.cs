@@ -13,7 +13,7 @@ public class MoverTestZenject : ZenjectIntegrationTestFixture {
 
     [SetUp]
     public void Init() {
-        SceneManager.LoadScene("Tori");
+        SceneManager.LoadScene("TestScene");
         testInputProvider = new TestInputProvider();
     }
 

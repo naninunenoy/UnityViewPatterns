@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Player {
     public class Mover : MonoBehaviour {
@@ -10,6 +11,7 @@ namespace Player {
 
         private CharacterController characterController;
 
+        [Inject]
         private IInputProvider inputProvider;
 
         private Vector3 moveDirection;

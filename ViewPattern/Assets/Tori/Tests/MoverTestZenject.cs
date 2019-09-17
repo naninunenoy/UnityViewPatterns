@@ -17,7 +17,9 @@ public class MoverTestZenject : SceneTestFixture {
     }
 
     void CommonInstall() {
-        StaticContext.Container.Bind<IInputProvider>().FromInstance(testInputProvider);
+        SceneContainer.UnbindAll();
+        SceneContainer.Bind<IInputProvider>().FromInstance(testInputProvider);
+        SceneContainer.InjectGameObject(targetGameObject);
     }
 
 
@@ -38,10 +40,9 @@ public class MoverTestZenject : SceneTestFixture {
 
     [UnityTest]
     public IEnumerator MoveTest() {
-        CommonInstall();
         yield return LoadScene("TestScene");
-
         InitLazy();
+        CommonInstall();
 
         // 前に進む
         testInputProvider.MoveDirection = Vector3.forward;
@@ -55,10 +56,9 @@ public class MoverTestZenject : SceneTestFixture {
 
     [UnityTest]
     public IEnumerator DashTest() {
-        CommonInstall();
         yield return LoadScene("TestScene");
-
         InitLazy();
+        CommonInstall();
 
         // 前に進む
         testInputProvider.MoveDirection = Vector3.forward;
@@ -84,10 +84,9 @@ public class MoverTestZenject : SceneTestFixture {
 
     [UnityTest]
     public IEnumerator JumpTest() {
-        CommonInstall();
         yield return LoadScene("TestScene");
-
         InitLazy();
+        CommonInstall();
 
         // ジャンプする
         testInputProvider.IsJump = true;

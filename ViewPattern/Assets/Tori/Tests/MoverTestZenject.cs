@@ -7,21 +7,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class MoverTestZenject : ZenjectIntegrationTestFixture {
+public class MoverTestZenject : SceneTestFixture {
     private TestInputProvider testInputProvider;
     private GameObject targetGameObject;
 
     [SetUp]
     public void Init() {
-        SceneManager.LoadScene("TestScene");
         testInputProvider = new TestInputProvider();
     }
 
     void CommonInstall() {
-        PreInstall();
-        Container.Bind<IInputProvider>().FromInstance(testInputProvider);
-
-        PostInstall();
+        StaticContext.Container.Bind<IInputProvider>().FromInstance(testInputProvider);
     }
 
 
@@ -43,6 +39,7 @@ public class MoverTestZenject : ZenjectIntegrationTestFixture {
     [UnityTest]
     public IEnumerator MoveTest() {
         CommonInstall();
+        yield return LoadScene("TestScene");
 
         InitLazy();
 
@@ -59,6 +56,7 @@ public class MoverTestZenject : ZenjectIntegrationTestFixture {
     [UnityTest]
     public IEnumerator DashTest() {
         CommonInstall();
+        yield return LoadScene("TestScene");
 
         InitLazy();
 
@@ -87,6 +85,7 @@ public class MoverTestZenject : ZenjectIntegrationTestFixture {
     [UnityTest]
     public IEnumerator JumpTest() {
         CommonInstall();
+        yield return LoadScene("TestScene");
 
         InitLazy();
 

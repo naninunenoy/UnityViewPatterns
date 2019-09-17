@@ -8,12 +8,13 @@ using Zenject;
 using BMIApp.Login;
 
 namespace BMIApp.Tests.PlayMode {
-    public class LoginSceneTest : SceneTestFixture {
+    [TestFixture]
+    public class LoginSceneTest : ZenjectIntegrationTestFixture {
         const string sceneName = "Login";
 
         [UnityTest]
         public IEnumerator SceneTest() {
-            yield return LoadScene(sceneName);
+            yield return null;
         }
     }
 }

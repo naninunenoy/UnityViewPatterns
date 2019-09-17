@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BMIApp/Scenes/BMI.unity
     guid: 4733730a2d0a8884ab121dd556909de9
+  - enabled: 1
+    path: Assets/Tori/Tori.unity
+    guid: fe98b51599fe143f88020433a715cfd0
   m_configObjects: {}

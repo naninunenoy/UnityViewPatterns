@@ -34,9 +34,9 @@ namespace BMIApp.Tests.PlayMode {
             loginView = canvas.Find("LoginView").GetComponent<LoginView>();
             sharedData = ScriptableObject.CreateInstance<SharedScriptableObject>();
             // set
-            alertPresenter.View = alertView;
-            loginPresenter.View = loginView;
-            accountRepository.Data = sharedData;
+            alertPresenter.InnerPresenter = new AlertPresenter(alertView);
+            loginPresenter.InnerPresenter = new LoginPresenter(loginView);
+            accountRepository.InnerRepository = new UserAccountRepository(sharedData);
         }
 
         void BeginMain() {

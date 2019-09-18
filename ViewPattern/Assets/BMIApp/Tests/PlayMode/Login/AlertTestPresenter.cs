@@ -7,21 +7,20 @@ using BMIApp.Login;
 
 namespace BMIApp.Tests.PlayMode {
     public class AlertTestPresenter : IAlertPresenter {
-        public AlertView View { set; get; }
+        public AlertPresenter InnerPresenter { set; get; }
 
-        public IObservable<Unit> CloseButtonClickObservable { private set; get; }
+        public IObservable<Unit> CloseButtonClickObservable => InnerPresenter.CloseButtonClickObservable;
 
         public void Begin() {
-            CloseButtonClickObservable = View.CloseButton.OnClickAsObservable();
+            InnerPresenter?.Begin();
         }
 
         public void Close() {
-            View.ViewTransform.gameObject.SetActive(false);
+            InnerPresenter?.Close();
         }
 
         public void Open(string message) {
-            View.AlertText.text = message;
-            View.ViewTransform.gameObject.SetActive(true);
+            InnerPresenter?.Open(message);
         }
     }
 }

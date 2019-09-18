@@ -4,14 +4,13 @@ using UnityEngine;
 
 namespace BMIApp.Tests.PlayMode {
     public class UserAccountTestRepository : IUserAccountRepository {
-        public SharedScriptableObject Data { set; get; }
+        public UserAccountRepository InnerRepository { set; get; }
 
-        public string CurrentUserId { set { Data.CurrentUserId = value; } get => Data.CurrentUserId; }
-        public string CurrentUserToken { set { Data.CurrentUserToken = value; } get => Data.CurrentUserToken; }
+        public string CurrentUserId { set { InnerRepository.CurrentUserId = value; } get => InnerRepository.CurrentUserId; }
+        public string CurrentUserToken { set { InnerRepository.CurrentUserToken = value; } get => InnerRepository.CurrentUserToken; }
 
         public void Clear() {
-            Data.CurrentUserId = string.Empty;
-            Data.CurrentUserToken = string.Empty;
+            InnerRepository?.Clear();
         }
     }
 }

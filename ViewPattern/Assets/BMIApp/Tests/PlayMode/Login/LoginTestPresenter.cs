@@ -7,24 +7,18 @@ using BMIApp.Login;
 
 namespace BMIApp.Tests.PlayMode {
     public class LoginTestPresenter : ILoginPresenter {
-        public LoginView View { set; get; }
+        public LoginPresenter InnerPresenter { set; get; }
 
-        public IReadOnlyReactiveProperty<string> IdInput { private set; get; }
-
-        public IReadOnlyReactiveProperty<string> PasswordInput { private set; get; }
-
-        public IObservable<Unit> LoginButtonClickObservable { private set; get; }
+        public IReadOnlyReactiveProperty<string> IdInput => InnerPresenter.IdInput;
+        public IReadOnlyReactiveProperty<string> PasswordInput => InnerPresenter.PasswordInput;
+        public IObservable<Unit> LoginButtonClickObservable => InnerPresenter.LoginButtonClickObservable;
 
         public void SetLoginButtonInteractive(bool interactive) {
-            if (View?.LoginButton != null) {
-                View.LoginButton.interactable = interactive;
-            }
+            InnerPresenter?.SetLoginButtonInteractive(interactive);
         }
 
         public void Begin() {
-            IdInput = View?.IdInputField.OnEndEditAsObservable().ToReadOnlyReactiveProperty();
-            PasswordInput = View?.PasswordInputField.OnEndEditAsObservable().ToReadOnlyReactiveProperty();
-            LoginButtonClickObservable = View?.LoginButton.OnClickAsObservable();
+            InnerPresenter?.Begin();
         }
     }
 }

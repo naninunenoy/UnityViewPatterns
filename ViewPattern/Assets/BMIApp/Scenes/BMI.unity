@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a0deb3395171943a2213fcce17c272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  main: {fileID: 1630082688}
   sharedData: {fileID: 11400000, guid: f244c23dbe9ce8146ae2fb6aa52c77cd, type: 2}
   bmiView: {fileID: 488622656095085487}
   historyView: {fileID: 6588852202219034493}

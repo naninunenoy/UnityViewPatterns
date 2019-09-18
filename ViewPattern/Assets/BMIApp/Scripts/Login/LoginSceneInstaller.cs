@@ -3,15 +3,13 @@ using Zenject;
 using BMIApp.CleanArchitecture;
 
 namespace BMIApp.Login {
-    public class LoginSceneInstaller : MonoInstaller, IMainInstaller {
-        [SerializeField] GameObject main = default;
+    public class LoginSceneInstaller : MainInstallerBase {
         [SerializeField] LoginView loginView = default;
         [SerializeField] AlertView loginAlertView = default;
         [SerializeField] SharedScriptableObject sharedData = default;
 
-        public GameObject SceneMainObject => main;
-
         public override void InstallBindings() {
+            base.InstallBindings();
             Container
                 .Bind<IAuthController>()
                 .FromInstance(new DummyAuthController())

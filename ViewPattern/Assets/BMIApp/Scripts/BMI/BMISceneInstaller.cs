@@ -1,8 +1,8 @@
 using UnityEngine;
-using Zenject;
+using BMIApp.CleanArchitecture;
 
 namespace BMIApp.BMI {
-    public class BMISceneInstaller : MonoInstaller {
+    public class BMISceneInstaller : MainInstallerBase {
         [SerializeField] SharedScriptableObject sharedData = default;
         [SerializeField] BMIView bmiView = default;
         [SerializeField] HistoryView historyView = default;
@@ -10,6 +10,7 @@ namespace BMIApp.BMI {
         [SerializeField] AccountView accountView = default;
 
         public override void InstallBindings() {
+            base.InstallBindings();
             // ユーザ未設定でこのシーンを開いた場合、debug用のrepositoryを参照
             var dataStore = string.IsNullOrEmpty(sharedData.CurrentUserId) ?
                 new TemporaryHistoryDataStore() as IHistoryDataStore :

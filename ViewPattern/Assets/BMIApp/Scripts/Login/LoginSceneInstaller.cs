@@ -11,19 +11,23 @@ namespace BMIApp.Login {
             Container
                 .Bind<IAuthController>()
                 .FromInstance(new DummyAuthController())
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<ILoginPresenter>()
                 .FromInstance(new LoginPresenter(loginView))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<IAlertPresenter>()
                 .FromInstance(new AlertPresenter(loginAlertView))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<IUserAccountRepository>()
                 .FromInstance(new UserAccountRepository(sharedData))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
         }
     }
 }

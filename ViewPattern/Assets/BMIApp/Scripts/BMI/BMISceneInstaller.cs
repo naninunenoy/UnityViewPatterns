@@ -17,23 +17,28 @@ namespace BMIApp.BMI {
             Container
                 .Bind<IHistoryListPresenter>()
                 .FromInstance(new HistoryListPresenter(historyView, historyElmView))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<IBMIHistoryRepository>()
                 .FromInstance(new BMIHistoryRepository(dataStore))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<IBMIPresenter>()
                 .FromInstance(new BMIPresenter(bmiView))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<IUserAccountRepository>()
                 .FromInstance(new UserAccountRepository(sharedData))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
             Container
                 .Bind<IAccountPresenter>()
                 .FromInstance(new AccountPresenter(accountView))
-                .AsCached();
+                .AsCached()
+                .IfNotBound();
         }
     }
 }

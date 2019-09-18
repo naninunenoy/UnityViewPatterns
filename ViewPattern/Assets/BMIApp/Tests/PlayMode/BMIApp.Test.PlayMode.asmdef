@@ -3,7 +3,8 @@
     "references": [
         "GUID:b8ae40cc417c748a58489b7f338a876e",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:a2f2239355369ba4fb6909aeaa41def5"
+        "GUID:a2f2239355369ba4fb6909aeaa41def5",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

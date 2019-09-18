@@ -9,10 +9,10 @@ namespace BMIApp.Login {
         [SerializeField] InputField pwInputField = default;
         [SerializeField] Button loginButton = default;
 
-        InputField ILoginView.IdInputField => idInputField;
+        public InputField IdInputField => idInputField;
 
-        InputField ILoginView.PasswordInputField => pwInputField;
+        public InputField PasswordInputField => pwInputField;
 
-        Button ILoginView.LoginButton => loginButton;
+        public Button LoginButton => loginButton;
     }
 }

@@ -7,17 +7,8 @@ using BMIApp.BMI;
 namespace BMIApp.Tests.PlayMode {
     public class BMIHistoryTestRepository : IBMIHistoryRepository {
         public BMIHistoryRepository InnerRepository { set; get; }
-
-        public Task DeleteAllAsync() {
-            return InnerRepository.DeleteAllAsync();
-        }
-
-        public Task<IEnumerable<IBMIDataTransferObject>> LoadAllAsync() {
-            return InnerRepository.LoadAllAsync();
-        }
-
-        public Task SaveAsync(IBMIDataTransferObject data) {
-            return InnerRepository.SaveAsync(data);
-        }
+        public Task DeleteAllAsync() => InnerRepository.DeleteAllAsync();
+        public Task<IEnumerable<IBMIDataTransferObject>> LoadAllAsync() => InnerRepository.LoadAllAsync();
+        public Task SaveAsync(IBMIDataTransferObject data) => InnerRepository.SaveAsync(data);
     }
 }

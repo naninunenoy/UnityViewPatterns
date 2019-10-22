@@ -1,0 +1,19 @@
+{
+    "name": "BMIApp.Test.EditMode",
+    "references": [
+        "GUID:b8ae40cc417c748a58489b7f338a876e"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
